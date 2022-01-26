@@ -2,14 +2,14 @@
 
 ## Minute by Minute
 
-| **Elapsed** | **Time**  | **Activity**              |
-| ----------- | --------- | ------------------------- |
-| 0:00        | 0:05      | Why/Objectives            |
-| 0:05        | 0:20      | Warm Up                   |
-| 0:25        | 0:30      | TT                        |
-| 0:50        | 0:10      | BREAK                     |
-| 0:60        | 0:60      | In Class Activity I       |
-| TOTAL       | 2:00      |                           |
+| **Elapsed** | **Time** | **Activity**        |
+| ----------- | -------- | ------------------- |
+| 0:00        | 0:05     | Why/Objectives      |
+| 0:05        | 0:20     | Warm Up             |
+| 0:25        | 0:30     | TT                  |
+| 0:50        | 0:10     | BREAK               |
+| 0:60        | 0:60     | In Class Activity I |
+| TOTAL       | 2:00     |                     |
 
 ## Why You Should Know This
 
@@ -33,7 +33,7 @@ Your implementation will stay the same, regardless of the underlying relational 
 
 ## Overview/TT I (30 min)
 
-1. Introduce students to [gorm](http://gorm.io) and go over it's unique features. Contrast and compare `gorm` to their experience with `mongoose` in BEW1.2.
+1. Introduce students to [gorm](http://gorm.io) and go over it's unique features. Contrast and compare `gorm` to their experience with `mongoose` in ACS 1230.
 
 2. Demonstrate navigating `gorm`'s [documentation](http://gorm.io/docs/) and highlight `gorm`'s syntax to query and filter persistent data.
 
