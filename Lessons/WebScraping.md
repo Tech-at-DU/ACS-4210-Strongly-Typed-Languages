@@ -56,13 +56,13 @@ Programs that use this design pattern follow the **Extract-Transform-Load (ETL) 
 
 Below are the most common selectors used when scraping the web for the purposes of data collection.
 
-| Name                 | Syntax          | Description                                                  |
-| -------------------- | --------------- | ------------------------------------------------------------ |
-| **Element**          | `a`             | Any element  `section`, `a`, `table`, etc.                   |
-| **ID**               | `#home-link`    | First element with `id="video-player"`                       |
-| **Class**            | `.blog-post`    | Any element with `class="blog-post"`                         |
+| Name                 | Syntax          | Description                                                    |
+| -------------------- | --------------- | -------------------------------------------------------------- |
+| **Element**          | `a`             | Any element  `section`, `a`, `table`, etc.                     |
+| **ID**               | `#home-link`    | First element with `id="video-player"`                         |
+| **Class**            | `.blog-post`    | Any element with `class="blog-post"`                           |
 | **Attribute**        | `a[href]`       | All values of the `href` attribute assigned to any `a` element |
-| **Pseudo-Attribute** | `a:first-child` | The first `a` element                                        |
+| **Pseudo-Attribute** | `a:first-child` | The first `a` element                                          |
 
 Let's practice selectors now --- they're the most important part of writing an awesome web scraper! If the selector isn't correct, nothing will return, and no data will have been collected as a result of running your scraper.
 

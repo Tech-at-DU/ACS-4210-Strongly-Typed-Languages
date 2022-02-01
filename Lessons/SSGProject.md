@@ -77,7 +77,7 @@ _David Walsh blogs more about the specifics in [An Introduction to Static Site G
 
 ## [**10m**] 📖 Starting a New Project
 
-Follow the [Getting Started](https://github.com/Make-School-Labs/makesite#getting-started) section of the project `README`.
+Follow the [Getting Started](https://github.com/tech-at-du/makesite#getting-started) section of the project `README`.
 
 ## [**05m**] 📖 Building, Running, & Installing
 
