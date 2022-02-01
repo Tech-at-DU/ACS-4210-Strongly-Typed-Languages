@@ -230,22 +230,40 @@ import (
         "os"
 )
 
-type entry struct {
-        Name string
-        Done bool
-}
-
-type ToDo struct {
-        User string
-        List []entry
+// Page holds all the information we need to generate a new
+// HTML page from a text file on the filesystem.
+type Page struct {
+	TextFilePath string
+	TextFileName string
+	HTMLPagePath string
+	Content      string
 }
 
 func main() {
-        t := template.Must(template.New("template.tmpl").ParseFiles("new.html"))
-        err = t.Execute(os.Stdout, todos)
-        if err != nil {
-          panic(err)
+        fileContents := byte[]("A string for demonstration purposes.")
+        page := Page{
+          TextFilePath: filePath,
+          TextFileName: "new",
+          HTMLPagePath: "new.html",
+          Content:      string(fileContents),
         }
+
+        // Create a new template in memory named "template.tmpl".
+        // When the template is executed, it will parse template.tmpl,
+        // looking for {{ }} where we can inject content.
+        t := template.Must(template.New("template.tmpl").ParseFiles("template.tmpl"))
+
+        // Create a new, blank HTML file.
+        newFile, err := os.Create("new.html")
+        if err != nil {
+              panic(err)
+        }
+
+        // Executing the template injects the Page instance's data,
+        // allowing us to render the content of our text file.
+        // Furthermore, upon execution, the rendered template will be
+        // saved inside the new file we created earlier.
+        t.Execute(newFile, page)
 }
 ```
 

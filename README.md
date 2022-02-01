@@ -1,6 +1,6 @@
 ![gophers](https://raw.githubusercontent.com/ashleymcnamara/gophers/master/GOPHER_AVATARS.jpg)
 
-# BEW 2.5: Patterns & Practices in Strongly Typed Languages
+# ACS 4210: Patterns & Practices in Strongly Typed Languages
 
 <!-- omit in toc -->
 ### Table of Contents
@@ -14,8 +14,6 @@
 1. [Late Assignment Policy](#late-assignment-policy)
 1. [Evaluation](#evaluation)
 1. [Additional Resources](#additional-resources)
-1. [Information Resources](#information-resources)
-1. [Make School Course Policies](#make-school-course-policies)
 
 ## Course Description
 
@@ -40,7 +38,6 @@ _In this course, students discover the value of strongly typed languages in serv
 5. Gain experience deploying APIs and bots to production.
 
 ## Schedule
-
 
 **Course Dates:** Wednesday, January 19 through Friday, March 11, 2022 _(7 weeks)_<br>
 **Class Times:** Monday, Wednesday, Friday at 6:30 - 7:20pm PST _(19 class sessions)_
@@ -142,27 +139,8 @@ sudo ./update-golang.sh
 <!-- omit in toc -->
 ### Links
 
-- [make.sc/library](http://make.sc/library)
 - [Gophercises](https://gophercises.com/): Real-world side projects with video tutorials!
 - [TutorialEdge - Golang Repository](https://github.com/elliotforbes/tutorialedge-v2/tree/master/content/golang): Mini-tutorials to introduce and enhance your Golang knowledge.
 - [YouTube - Todd Mcleod](https://www.youtube.com/user/toddmcleod/playlists): Videos to reinforce Golang concepts and techniques that we cover in class.
 - [Echo Framework](https://echo.labstack.com/guide): Documentation for Echo, a high performance, extensible, minimalist Go web framework.
 - [GORM](http://doc.gorm.io/#): The fantastic ORM library for Golang.
-
-## Information Resources
-
-Any additional resources you may need (online books, etc.) can be found here. You can also find additional resources through the library linked below:
-
-- [make.sc/library](http://make.sc/library)
-
-## Make School Course Policies
-
-- [Program Learning Outcomes](https://make.sc/program-learning-outcomes) - What you will achieve after finishing Make School, all courses are designed around these outcomes.
-- [Grading System](https://make.sc/grading-system) - How grading is done at Make School
-- [Diversity and Inclusion Statement](https://make.sc/diversity-and-inclusion-statement) - Learn about Diversity and Inclusion at Make School
-- [Academic Honesty](https://make.sc/academic-honesty-policy) - Our policies around plagiarism, cheating, and other forms of academic misconduct
-- [Attendance Policy](https://make.sc/attendance-policy) - What we expect from you in terms of attendance for all classes at Make School
-- [Course Credit Policy](https://make.sc/course-credit-policy) - Our policy for how you obtain credit for your courses
-- [Disability Services (Academic Accommodations)](https://make.sc/disability-services) - Services and accommodations we provide for students
-- [Online Learning Tutorial](https://make.sc/online-learning-tutorial) - How to succeed in online learning at Make School
-- [Student Handbook](https://make.sc/student-handbook) - Guidelines, policies, and resources for all Make School students
