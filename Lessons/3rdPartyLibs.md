@@ -3,7 +3,6 @@
 <!-- omit in toc -->
 ## ⏱ Agenda
 
-- [[**30m**] ☀️ Warm Up](#30m-️-warm-up)
 - [[**15m**] 💻 Activity: Review, Reflect, Resubmit](#15m--activity-review-reflect-resubmit)
 - [[**10m**] 🌴 Break](#10m--break)
 - [[**20m**] 📖 Overview: Intro to Using 3rd Party Libs](#20m--overview-intro-to-using-3rd-party-libs)
@@ -17,20 +16,20 @@
 - [📚 Resources & Credits](#-resources--credits)
 
 
-## 🏆 Objectives
+<!-- ## 🏆 Objectives
 
-|   Level   | Verbs |
-| --------- | ----- |
-| 6: Create | design, formulate, build, invent, create, compose, generate, derive, modify, develop |
-| 5: Evaluate | choose, support, relate, determine, defend, compare, contrast, justify, support, convince, select |
-| 4: Analyze | classify, break down, categorize, analyze, diagram, illustrate, criticize, simplify, associate |
-| 3: Apply | calculate, predict, apply, solve, illustrate, use, demonstrate, determine, model, perform, present |
-| 2: Understand | describe, explain, paraphrase, restate, summarize, contrast, interpret, discuss |
-| 1: Remember | list, recite, outline, define, name, match, quote, recall, identify, label, recognize |
+| Level         | Verbs                                                                                              |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| 6: Create     | design, formulate, build, invent, create, compose, generate, derive, modify, develop               |
+| 5: Evaluate   | choose, support, relate, determine, defend, compare, contrast, justify, support, convince, select  |
+| 4: Analyze    | classify, break down, categorize, analyze, diagram, illustrate, criticize, simplify, associate     |
+| 3: Apply      | calculate, predict, apply, solve, illustrate, use, demonstrate, determine, model, perform, present |
+| 2: Understand | describe, explain, paraphrase, restate, summarize, contrast, interpret, discuss                    |
+| 1: Remember   | list, recite, outline, define, name, match, quote, recall, identify, label, recognize              | --> |
 
-## [**30m**] ☀️ Warm Up
+<!-- ## [**30m**] ☀️ Warm Up
 
-Complete [Structs & While Loops](WarmUps.md#30m-️-warm-up-2-structs--while-loops) warmup.
+Complete [Structs & While Loops](WarmUps.md#30m-️-warm-up-2-structs--while-loops) warmup. -->
 
 ## [**15m**] 💻 Activity: Review, Reflect, Resubmit
 
