@@ -53,7 +53,7 @@ Your boss will be looking for it in a **file named `proposal.md`**.
 
 ## Rubric
 <p align="center">
-    <img src="rubric-final-project.png" width="80%">
+    <img src="rubric-final-project.png" width="50%">
 </p>
 
 ## Code Review and Feedback
