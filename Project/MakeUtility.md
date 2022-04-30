@@ -52,8 +52,9 @@ Your boss will be looking for it in a **file named `proposal.md`**.
 5. Instructor **feedback will appear in the empty space below** the rubric and **distributed at the end of the term**.
 
 ## Rubric
-
-Rubric is viewable on [Gradescope](https://www.gradescope.com/courses/86046/assignments/374070).
+<p align="center">
+    <img src="rubric-final-project.png" width="80%">
+</p>
 
 ## Code Review and Feedback
 
