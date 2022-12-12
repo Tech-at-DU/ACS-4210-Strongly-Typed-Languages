@@ -125,16 +125,7 @@ Your **three to five minute presentation** should focus on the **experience you 
 
 ## Additional Resources
 
-<!-- omit in toc -->
-### Update to Latest Version of Go
-
-New version of Go released? No problem! Run the following command to install the latest version of Golang on your Mac or Linux system:
-
-```bash
-git clone https://github.com/udhos/update-golang
-cd update-golang
-sudo ./update-golang.sh
-```
+https://threedots.tech/go-in-one-evening/
 
 <!-- omit in toc -->
 ### Links
