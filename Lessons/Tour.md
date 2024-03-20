@@ -6,7 +6,7 @@
 
 <!-- > -->
 
-## [**40m**] 💬 **TT**: Tutorial Scavenger Hunt
+# [**20m**] 💻 **Activity**: Tutorial Scavenger Hunt
 
 Introduce students to the [Tour of Go](https://go.dev/tour/welcome/1).
 
@@ -28,28 +28,26 @@ Ask them to complete sections 1 (pages 1-5) and 2 in small breakout groups, and 
 14. what language are the characters on page 15?
 15. what does it mean in English?
 
+<!-- > -->
+
+ # [**15m**] 🌴 **BREAK** {docsify-ignore}
 
 <!-- > -->
 
-<!-- > -->
 
-## [**20m**] 💻 **Activity**: Title
+## [**30m**] 💻 **Activity**: More Tour!
 
-`TODO`
+In different breakout groups, work on the answers for section 3 (pages 1-14):
 
-<!-- > -->
+1. name the three parts of a for loop?
+2. what order are switch statements evaluated?
+3. explain "defer" in your own words
 
-## [**10m**] 🌴 **BREAK** {docsify-ignore}
+## [**30m**] 💻 **TT**: Compare Answers
 
-<!-- > -->
+Review the questions and answers for the first 3 sections of the Tour of Go.
 
-## [**10m**] 🔄 **Recap**: Today's Takeaways
+## After Class
 
-`TODO`
+Ask students to complete https://go.dev/tour/moretypes and https://go.dev/tour/methods for homework.
 
-<!-- > -->
-
-<!-- omit in toc -->
-## 📚 Resources & Credits
-
-`TODO`

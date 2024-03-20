@@ -25,7 +25,7 @@ _In this course, students discover the value of strongly typed languages in serv
 
 ## Course Specifics
 
-**Course Delivery**: online | 7 weeks | 19 sessions
+**Course Delivery**: online | 7 weeks
 
 **Course Credits**: 3 units | 37.5 Seat Hours | 75 Total Hours
 
@@ -39,8 +39,8 @@ _In this course, students discover the value of strongly typed languages in serv
 
 ## Schedule
 
-**Course Dates:** Wednesday, January 19 through Friday, March 11, 2022 _(7 weeks)_<br>
-**Class Times:** Monday, Wednesday, Friday at 6:30 - 7:20pm PST _(19 class sessions)_
+<!-- **Course Dates:** Wednesday, January 19 through Friday, March 11, 2022 _(7 weeks)_<br>
+**Class Times:** Monday, Wednesday, Friday at 6:30 - 7:20pm PST _(19 class sessions)_ -->
 
 | Class | Topics                                                                    |
 | :---: | ------------------------------------------------------------------------- |
