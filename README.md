@@ -45,7 +45,7 @@ _In this course, students discover the value of strongly typed languages in serv
 | Class | Topics                                                                    |
 | :---: | ------------------------------------------------------------------------- |
 | `01`  | 🆕 Welcome to Class / Static Languages                                     |
-| `02`  | [**Intro to Go / Tutorial Launch**](https://tour.golang.org)              |
+| `02`  | [**Intro to Go / Tutorial Launch**](Lessons/Tour.md)              |
 | `03`  | **[Drill Day](Lessons/WarmUps.md)**                                       |
 | `04`  | **[Static Site Generators](Lessons/SSGProject.md)**                       |
 | `05`  | **[Files & Directories](Lessons/FilesDirectories.md)**                    |
