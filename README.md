@@ -5,15 +5,22 @@
 <!-- omit in toc -->
 ### Table of Contents
 
-1. [Course Description](#course-description)
-1. [Prerequisites](#prerequisites)
-1. [Course Specifics](#course-specifics)
-1. [Learning Objectives](#learning-objectives)
-1. [Schedule](#schedule)
-1. [Course Deliverables](#course-deliverables)
-1. [Late Assignment Policy](#late-assignment-policy)
-1. [Evaluation](#evaluation)
-1. [Additional Resources](#additional-resources)
+1. [Course Description](#%63%6F%75%72%73%65%2D%64%65%73%63%72%69%70%74%69%6F%6E)
+1. [Prerequisites](#%70%72%65%72%65%71%75%69%73%69%74%65%73)
+1. [Course Specifics](#%63%6F%75%72%73%65%2D%73%70%65%63%69%66%69%63%73)
+1. [Learning Objectives](#%6C%65%61%72%6E%69%6E%67%2D%6F%62%6A%65%63%74%69%76%65%73)
+1. [Schedule](#%73%63%68%65%64%75%6C%65)
+   1. [Holidays \& Days Off](#%68%6F%6C%69%64%61%79%73%2D%26%2D%64%61%79%73%2D%6F%66%66)
+   1. [Class Sessions](#%63%6C%61%73%73%2D%73%65%73%73%69%6F%6E%73)
+1. [Evaluation](#%65%76%61%6C%75%61%74%69%6F%6E)
+   1. [Tutorial](#%74%75%74%6F%72%69%61%6C)
+   1. [Deliverables](#%64%65%6C%69%76%65%72%61%62%6C%65%73)
+   1. [Blog Post](#%62%6C%6F%67%2D%70%6F%73%74)
+   1. [Final Project](#%66%69%6E%61%6C%2D%70%72%6F%6A%65%63%74)
+   1. [Final Presentation](#%66%69%6E%61%6C%2D%70%72%65%73%65%6E%74%61%74%69%6F%6E)
+1. [Late Assignment Policy](#%6C%61%74%65%2D%61%73%73%69%67%6E%6D%65%6E%74%2D%70%6F%6C%69%63%79)
+1. [Additional Practice \& External Resources](#%61%64%64%69%74%69%6F%6E%61%6C%2D%70%72%61%63%74%69%63%65%2D%26%2D%65%78%74%65%72%6E%61%6C%2D%72%65%73%6F%75%72%63%65%73)
+
 
 ## Course Description
 
@@ -38,7 +45,7 @@ _In this course, students discover the value of strongly typed languages in serv
 
 ## Schedule
 
-**Course Dates:** March 19 through May 11, 2024 _(7 weeks)_<br>
+<!-- **Course Dates:** March 19 through May 11, 2024 _(7 weeks)_<br> -->
 **Class Times:** 4:00pm - 6:45pm PST _(11 sessions, see below)_
 
 ### Holidays & Days Off
@@ -64,43 +71,37 @@ On the following days this term, our class will NOT be meeting on Zoom:
 | `10`  | **[Documentation & Deployments](Lessons/DocsDeploy.md)**                  |
 | `11`  | [**Final Presentations**](Project/MakeUtility.md)                         |
 
-## Course Deliverables
-
-We will be using Gradescope this term, which allows us to provide fast and accurate feedback on your work. All assigned work will be submitted through Gradescope, and assignment and exam grades will be returned through Gradescope. As soon as grades are posted, you will be notified immediately so that you can log in and see your feedback. You may also submit regrade requests if you feel we have made a mistake.
-
-Your Gradescope login is your Make School email, and your password can be changed at https://gradescope.com/reset_password. The same link can be used if you need to set your password for the first time.
-
-*Assignments **must** be submitted to Gradescope by **11:59PM PST** on the date due.*
-
-| 📚   Assignment                                      | 🔗   Criteria                                                                                                                                                                         | 📆   Due Date                                                        |
-| :-------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| **[Tour of Go](https://tour.golang.org/welcome/1)** | Done in Class                                                                                                                                                                        | Jan 28, 2022  *(Friday)*                                            |
-| **Static Site Generator**                           | [MVP](https://github.com/Make-School-Labs/makesite#mvp)  <br />[v1.1](https://github.com/Make-School-Labs/makesite#v1.1) / [v1.2](https://github.com/Make-School-Labs/makesite#v1.2) | <u>MVP</u>: TBD *(TBD)*<br /><u>v1.1</u> / <u>v1.2</u>: TBD *(TBD)* |
-| **Web Scraper**                                     | [Requirements](https://github.com/Tech-at-DU/makescraper)                                                                                                                            | TBD (*TBD*)                                                         |
-| **Blog Post**                                       | [Rubric](https://docs.google.com/document/d/1p5A_FvkVDJ783kYlCwBDpdGbY3G50UUJBmHH2umrzoU/edit?usp=sharing)                                                                           | March 11, 2022 *(Friday)*                                           |
-| **MakeUtility Project <br>& Presentation**          | [Requirements](Project/MakeUtility.md)                                                                                                                                               | March 11, 2022 *(Friday)*                                           |
-
-## Late Assignment Policy
-
-- Late assignments that are submitted **more than 5 days (120 hours)** after the deadline will be given a **25% late penalty**.
-- The **absolute last day** to submit any assignment will be **Friday, March 11 at 11:59 PM**.
-
-If you require accommodations or have extenuating circumstances such as prolonged illness, please contact your instructor to request an extension.
+                                |
 
 ## Evaluation
 
+We will be using Gradescope this term, which allows us to provide fast and accurate feedback on your work. All assigned work will be submitted through Gradescope, and assignment and exam grades will be returned through Gradescope. As soon as grades are posted, you will be notified immediately so that you can log in and see your feedback. You may also submit regrade requests if you feel we have made a mistake.
+
+Your Gradescope login is your Make School email, and your password can be changed at <https://gradescope.com/reset_password>. The same link can be used if you need to set your password for the first time.
+
 **To pass this course you must meet the following requirements**:
 
-- Complete the [tutorial](#tutorial), deliverables, [final project](#final-project), and [final presentation](#final-presentation) as assigned in class and described in the sections below.
+- Complete the [tutorial](#tutorial), [deliverables](#deliverables), [final project](#final-project), and [final presentation](#final-presentation) as assigned in class and described in the sections below.
 - Actively participate in class and abide by the attendance policy.
 - Make up all classwork from all absences.
 
-<!-- omit in toc -->
 ### Tutorial
 
-Complete the [tutorial](https://tour.golang.org) assigned in class; assessed via graded warmup during week two.
+Complete the [tutorial](https://tour.golang.org) assigned for homework on Day 01 and Day 02.
 
-<!-- omit in toc -->
+### Deliverables
+
+_ALL deliverables **must** be submitted to Gradescope by **11:59PM PST** on the date due._
+
+📚 Assignment                                       | 🔗 Criteria                                                                                                                                                     | 📆 Due Date
+:-------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------
+**[Tour of Go](https://tour.golang.org/welcome/1)** | Done in Class | April 8, 2024 _(Monday)_
+**Static Site Generator**                           | [MVP](https://github.com/Tech-at-DU/makesite#mvp)<br>[v1.1](https://github.com/Tech-at-DU/makesite#v1.1) / [v1.2](https://github.com/Tech-at-DU/makesite#v1.2) | <u>MVP</u>: `Day 04`<br><u>v1.1</u> / <u>v1.2</u>: `Day 05`
+**Web Scraper** | [Requirements](https://github.com/Tech-at-DU/makescraper) | April 19, 2024 (_Friday_)
+**Final Presentation** | [Requirements](Project/MakeUtility.md) | May 08, 2024 _(Wednesday)_
+**Final Project** | [Requirements](Project/MakeUtility.md) | May 12, 2024 _(Sunday)_
+**Blog Post** | [Rubric](https://docs.google.com/document/d/1p5A_FvkVDJ783kYlCwBDpdGbY3G50UUJBmHH2umrzoU/edit?usp=sharing) | May 12, 2024 _(Sunday)_
+
 ### Blog Post
 
 Demonstrate confidence writing and speaking about Go topics by writing a 500+ blog post on a language feature of your choice.
@@ -109,29 +110,29 @@ Your blog post must be accessible to the general public to earn credit; do not s
 
 Your grade will be determined via the [Make School Blog Post Rubric](https://docs.google.com/document/d/1T1oqHFoRo0kl7mPUTFupmsoEkLYltKsVgtqyGKDaCgY/edit). **You must earn a score of 2.5 or higher to pass**.
 
-<!-- omit in toc -->
 ### Final Project
 
 Complete the final project according to the associated [project rubric](Project/MakeUtility.md).
 
-<!-- omit in toc -->
 ### Final Presentation
 
 The delivery of a live or pre-recorded presentation is required to pass this course. **Presentations will be delivered on our final day of class**.
 
 Your **three to five minute presentation** should focus on the **experience you gained** and **lessons you learned** while implementing one of the three [Challenges](#challenges) in this course.
 
-**Your final presentation will be evaluated based on the [Make School Presentation Rubric](https://docs.google.com/document/d/1WTLcZNyvRGYDz5L8Kr8a0ILbFAyr92u85paoqGFjxPg/edit). You must earn an average of 2.5 on the rubric to pass**.
+**Your final presentation will be evaluated based on the ACS Presentation Rubric. You must earn an average of 2.5 on the rubric to pass**.
 
-## Additional Resources
+## Late Assignment Policy
 
-https://threedots.tech/go-in-one-evening/
+The **absolute last day** to submit any assignment will be **Sunday, May 12 at 11:59 PM**.
 
-<!-- omit in toc -->
-### Links
+If you require accommodations or have extenuating circumstances such as prolonged illness, please contact your instructor to request an extension.
+
+## Additional Practice & External Resources
 
 - [Gophercises](https://gophercises.com/): Real-world side projects with video tutorials!
 - [TutorialEdge - Golang Repository](https://github.com/elliotforbes/tutorialedge-v2/tree/master/content/golang): Mini-tutorials to introduce and enhance your Golang knowledge.
 - [YouTube - Todd Mcleod](https://www.youtube.com/user/toddmcleod/playlists): Videos to reinforce Golang concepts and techniques that we cover in class.
 - [Echo Framework](https://echo.labstack.com/guide): Documentation for Echo, a high performance, extensible, minimalist Go web framework.
 - [GORM](http://doc.gorm.io/#): The fantastic ORM library for Golang.
+- <https://threedots.tech/go-in-one-evening/>
