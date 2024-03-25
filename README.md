@@ -25,8 +25,7 @@ _In this course, students discover the value of strongly typed languages in serv
 
 ## Course Specifics
 
-**Course Delivery**: online | 7 weeks
-
+**Course Delivery**: online | 7 weeks<br>
 **Course Credits**: 3 units | 37.5 Seat Hours | 75 Total Hours
 
 ## Learning Objectives
@@ -39,30 +38,31 @@ _In this course, students discover the value of strongly typed languages in serv
 
 ## Schedule
 
-<!-- **Course Dates:** Wednesday, January 19 through Friday, March 11, 2022 _(7 weeks)_<br>
-**Class Times:** Monday, Wednesday, Friday at 6:30 - 7:20pm PST _(19 class sessions)_ -->
+**Course Dates:** March 19 through May 11, 2024 _(7 weeks)_<br>
+**Class Times:** 4:00pm - 6:45pm PST _(11 sessions, see below)_
 
-| Class | Topics                                                                    |
+### Holidays & Days Off
+
+On the following days this term, our class will NOT be meeting on Zoom:
+
+1. `Monday, April 01, 2024`: Campus Holiday
+1. `Monday, April 22, 2024`: Lab Day for [Final Project](Project/MakeUtility.md)
+
+### Class Sessions
+
+| Day | Class Topics                                                                    |
 | :---: | ------------------------------------------------------------------------- |
-| `01`  | 🆕 Welcome to Class / Static Languages                                     |
-| `02`  | [**Intro to Go / Tutorial Launch**](Lessons/Tour.md)              |
-| `03`  | **[Drill Day](Lessons/WarmUps.md)**                                       |
-| `04`  | **[Static Site Generators](Lessons/SSGProject.md)**                       |
-| `05`  | **[Files & Directories](Lessons/FilesDirectories.md)**                    |
-| `06`  | 🆕 Working with Modules                                                    |
-| `07`  | **[Fast Functionality via 3rd Party Libraries](Lessons/3rdPartyLibs.md)** |
-| `08`  | 🔬 **Lab**: SSG Project                                                    |
-| `09`  | **[Scraping the Web](Lessons/WebScraping.md)**                            |
-| `10`  | **[Scraping the Web](Lessons/WebScraping.md)**                            |
-| `11`  | **[Working With JSON](Lessons/JSON.md)**                                  |
-| `12`  | 🆕 **[Pointers](Lessons/Pointers.md)**                                     |
-| `13`  | **[Concurrency & Goroutines](Lessons/Lesson07.md)**                       |
-| `14`  | **[Project Kickoff](Project/MakeUtility.md)**                             |
-| `15`  | TBD                                                                       |
-| `16`  | **[Delve into Debugging](Lessons/Lesson10.md)**                           |
-| `17`  | **[Benchmarking & Testing](Lessons/Lesson09.md)**                         |
-| `18`  | **[Documentation & Deployments](Lessons/DocsDeploy.md)**                  |
-| `19`  | [**Final Presentations**](Project/MakeUtility.md)                         |
+| `01`  | 🆕 [Intro to Go / Tutorial Launch](Lessons/Tour.md)                       |
+| `02` | 🆕 [Types & Static Languages](Lessons/Types.md)                 |
+| `03`  | **[Static Site Generators](Lessons/SSGProject.md)**                       |
+| `04`  | **[Files & Directories](Lessons/FilesDirectories.md)**                    |
+| `05`  | **[Fast Functionality via 3rd Party Libraries](Lessons/3rdPartyLibs.md)** |
+| `06`  | **[Scraping the Web](Lessons/WebScraping.md)** / **[Working With JSON](Lessons/JSON.md)** |
+| `07`  | **[Final Project Intro](Project/MakeUtility.md)** / **[Pointers](Lessons/Pointers.md)**                               |
+| `08`  | **[Concurrency & Goroutines](Lessons/Lesson07.md)**                       |
+| `09`  | **[Benchmarking & Testing](Lessons/Lesson09.md)**                         |
+| `10`  | **[Documentation & Deployments](Lessons/DocsDeploy.md)**                  |
+| `11`  | [**Final Presentations**](Project/MakeUtility.md)                         |
 
 ## Course Deliverables
 
