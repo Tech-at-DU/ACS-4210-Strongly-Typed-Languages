@@ -44,9 +44,9 @@ Break students into a number of groups matching the list of topics.
 
 1. int / float / complex
 1. string / rune
-1. array / map
+1. slice / map
 1. interface / channel
-1. struct / slice
+1. structs
 
 ### Slides Should Contain
 
