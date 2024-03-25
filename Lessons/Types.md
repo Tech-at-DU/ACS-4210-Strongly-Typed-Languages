@@ -16,6 +16,7 @@
 
 
 
+
  ## 🏆 Objectives
 
 1. Understand the numerous data types and primitives available to programmers in Golang.
@@ -74,6 +75,8 @@ Please choose two questions from the earlier [Google Doc](https://docs.google.co
 ## [**20m**] 💻 **TT**: Course Introduction
 
 Instructor, please review the [course syllabus and class schedule](../README.md), Slack channel (#acs-4210), and [Gradescope](https://gradescope.com) before dismissing students.
+
+<!-- > -->
 
 ## After Class
 
