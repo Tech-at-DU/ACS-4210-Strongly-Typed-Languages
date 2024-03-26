@@ -52,5 +52,5 @@ Your boss will be looking for it in a **file named `proposal.md`**.
 ## Rubric
 
 <p align="center">
-    <img src="rubric-final-project.png" width="50%">
+    <img src="https://tech-at-du.github.io/ACS-4210-Strongly-Typed-Languages/Project/rubric-final-project.png" width="70%">
 </p>
