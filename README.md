@@ -135,3 +135,4 @@ If you require accommodations or have extenuating circumstances such as prolonge
 - [Echo Framework](https://echo.labstack.com/guide): Documentation for Echo, a high performance, extensible, minimalist Go web framework.
 - [GORM](http://doc.gorm.io/#): The fantastic ORM library for Golang.
 - <https://threedots.tech/go-in-one-evening/>
+- <https://github.com/cblte/100-golang-exercises/blob/main/exercises_beginner.adoc>
