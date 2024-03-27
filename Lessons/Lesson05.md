@@ -35,7 +35,7 @@ Go over the [Echo Middleware Cookbook](https://echo.labstack.com/cookbook/middle
 
 ## In Class Activity I (55 min)
 
-### Custom Make School Middleware
+### Customizing Middleware
 
 Your deliverable today is to **create a custom Echo middleware** that detects whether or not a particular request is coming from inside the building.
 
