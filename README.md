@@ -11,10 +11,9 @@
 1. [Learning Objectives](#%6C%65%61%72%6E%69%6E%67%2D%6F%62%6A%65%63%74%69%76%65%73)
 1. [Schedule](#%73%63%68%65%64%75%6C%65)
    1. [Online Sessions](#%6F%6E%6C%69%6E%65%2D%73%65%73%73%69%6F%6E%73)
-   1. [Holidays \& Offline Sessions](#%68%6F%6C%69%64%61%79%73%2D%26%2D%6F%66%66%6C%69%6E%65%2D%73%65%73%73%69%6F%6E%73)
+   1. [Deliverables](#%64%65%6C%69%76%65%72%61%62%6C%65%73)
 1. [Evaluation](#%65%76%61%6C%75%61%74%69%6F%6E)
    1. [Tutorial](#%74%75%74%6F%72%69%61%6C)
-   1. [Deliverables](#%64%65%6C%69%76%65%72%61%62%6C%65%73)
    1. [Blog Post](#%62%6C%6F%67%2D%70%6F%73%74)
    1. [Final Project](#%66%69%6E%61%6C%2D%70%72%6F%6A%65%63%74)
    1. [Final Presentation](#%66%69%6E%61%6C%2D%70%72%65%73%65%6E%74%61%74%69%6F%6E)
@@ -64,13 +63,25 @@ _In this course, students discover the value of strongly typed languages in serv
 | `10`  | **[Documentation & Deployments](Lessons/DocsDeploy.md)**                  |
 | `11`  | [**Final Presentations**](Project/MakeUtility.md)                         |
 
-### Holidays & Offline Sessions
+### Deliverables
+
+_ALL deliverables **must** be submitted to Gradescope by **11:59PM PST** on the date due._
+
+📚 Assignment                                       | 🔗 Criteria                                                                                                                                                     | 📆 Due Date
+:-------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------
+**[Tour of Go](https://tour.golang.org/welcome/1)** | Done in Class                                                                                                                                                   | April 8, 2024 _(Monday)_
+**Static Site Generator**                           | [MVP](https://github.com/Tech-at-DU/makesite#mvp)<br>[v1.1](https://github.com/Tech-at-DU/makesite#v1.1) / [v1.2](https://github.com/Tech-at-DU/makesite#v1.2) | <u>MVP</u>: April 3, 2024 (_Wednesday_)<br><u>v1.1</u> / <u>v1.2</u>: April 8, 2024 (_Monday_)
+**Web Scraper**                                     | [Requirements](https://github.com/Tech-at-DU/makescraper)                                                                                                       | April 22, 2024 (_Monday_)
+**Final Presentation**                              | [Requirements](Project/MakeUtility.md)                                                                                                                          | May 08, 2024 _(Wednesday)_
+**Final Project**                                   | [Requirements](Project/MakeUtility.md)                                                                                                                          | May 12, 2024 _(Sunday)_
+**Blog Post**                                       | [Rubric](https://docs.google.com/document/d/1p5A_FvkVDJ783kYlCwBDpdGbY3G50UUJBmHH2umrzoU/edit?usp=sharing)                                                      | May 12, 2024 _(Sunday)_
+
+# Holidays & Offline Sessions
 
 On the following days this term, our class will **NOT be meeting online** on Zoom:
 
 1. `Monday, April 01, 2024`: Campus Holiday
 2. `Monday, April 22, 2024`: Lab Day for [Final Project](Project/MakeUtility.md)
-
 
 ## Evaluation
 
@@ -87,19 +98,6 @@ Your Gradescope login is your Dominican University email, and your password can 
 ### Tutorial
 
 Complete the [tutorial](https://tour.golang.org) assigned for homework on Day 01 and Day 02. Tutorial completion will be assessed via a series of drills, introduced by the instructor and completed in class. All drills must be turned in on [Gradescope](https://gradescope.com).
-
-### Deliverables
-
-_ALL deliverables **must** be submitted to Gradescope by **11:59PM PST** on the date due._
-
-📚 Assignment                                       | 🔗 Criteria                                                                                                                                                     | 📆 Due Date
-:-------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------
-**[Tour of Go](https://tour.golang.org/welcome/1)** | Done in Class | April 8, 2024 _(Monday)_
-**Static Site Generator**                           | [MVP](https://github.com/Tech-at-DU/makesite#mvp)<br>[v1.1](https://github.com/Tech-at-DU/makesite#v1.1) / [v1.2](https://github.com/Tech-at-DU/makesite#v1.2) | <u>MVP</u>: `Day 04`<br><u>v1.1</u> / <u>v1.2</u>: `Day 05`
-**Web Scraper** | [Requirements](https://github.com/Tech-at-DU/makescraper) | April 22, 2024 (_Monday_)
-**Final Presentation** | [Requirements](Project/MakeUtility.md) | May 08, 2024 _(Wednesday)_
-**Final Project** | [Requirements](Project/MakeUtility.md) | May 12, 2024 _(Sunday)_
-**Blog Post** | [Rubric](https://docs.google.com/document/d/1p5A_FvkVDJ783kYlCwBDpdGbY3G50UUJBmHH2umrzoU/edit?usp=sharing) | May 12, 2024 _(Sunday)_
 
 ### Blog Post
 

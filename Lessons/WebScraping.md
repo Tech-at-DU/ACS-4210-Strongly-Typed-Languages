@@ -185,7 +185,7 @@ When you're done, use the remaining lab time to begin your project!
 
 ## [**55m**] 🧪 Lab Time: Begin Web Scraper Project
 
-Read the project [README](https://github.com/make-school-labs/makescraper) to begin your project.
+Read the project [README](https://github.com/Tech-at-DU/makescraper) to begin your project.
 
 You'll be able to complete at least a few requirements after what you've learned today.
 

@@ -82,8 +82,8 @@ Click the link in the last sentence, then modify the example code to print out t
 
 ## [**30m**] 💻 Work on SSG v1.1
 
-1. ⭐️ **IMPORTANT**: Finish the [requirements](https://github.com/Make-School-Labs/makesite#mvp) for the MVP before beginning v1.1.
-2. Begin working on the [requirements](https://github.com/Make-School-Labs/makesite#v11) for SSG v1.1. **Be sure to copy them into your project's README to keep track of your progress**!
+1. ⭐️ **IMPORTANT**: Finish the [requirements](https://github.com/Tech-at-DU/makesite#mvp) for the MVP before beginning v1.1.
+2. Begin working on the [requirements](https://github.com/Tech-at-DU/makesite#v11) for SSG v1.1. **Be sure to copy them into your project's README to keep track of your progress**!
 
 ## 📚 Resources & Credits
 

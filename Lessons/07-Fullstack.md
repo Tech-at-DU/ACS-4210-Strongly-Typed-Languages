@@ -42,7 +42,7 @@ The data type should be `float64`.
 
 ## [**30m**] 📖 Overview
 
-Today, we'll be going over the [golang-starter-pack](https://github.com/make-school-labs/golang-starter-pack) that we can use as the starting point for today's challenges, as well as the MakeUtility project due at the end of the term.
+Today, we'll be going over the [golang-starter-pack](https://github.com/Tech-at-DU/golang-starter-pack) that we can use as the starting point for today's challenges, as well as the MakeUtility project due at the end of the term.
 
 ## [**10m**] 🌴 BREAK
 

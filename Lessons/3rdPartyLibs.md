@@ -125,7 +125,7 @@ go mod download <package_url>
 
 ## [**25m**] 💻 Activity: Add Modules Support to Your SSG
 
-Complete the first requirement in the [v1.2 Checklist](https://github.com/Make-School-Labs/makesite#v12) by adding Go Modules support to your project. Use [this tutorial](https://tutorialedge.net/golang/go-modules-tutorial/) as a guide.
+Complete the first requirement in the [v1.2 Checklist](https://github.com/Tech-at-DU/makesite#v12) by adding Go Modules support to your project. Use [this tutorial](https://tutorialedge.net/golang/go-modules-tutorial/) as a guide.
 
 ## 📚 Resources & Credits
 

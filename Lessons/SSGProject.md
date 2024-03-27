@@ -269,7 +269,7 @@ func main() {
 
 ## [**65m**] 💻 Activity: Complete MVP
 
-Complete the MVP as described in the [requirements](https://github.com/make-school-labs/makesite) in the order they appear. If you finish early, move on to the stretch challenges.
+Complete the MVP as described in the [requirements](https://github.com/Tech-at-DU/makesite) in the order they appear. If you finish early, move on to the stretch challenges.
 
 Return 15 minutes before the end of class for your project status update.
 
