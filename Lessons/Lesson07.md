@@ -1,4 +1,4 @@
-<p align="center">
+s<p align="center">
   <img src="https://cdn-images-1.medium.com/max/800/1*lPX8LWWRYZRZzF9E3rSw0g.jpeg" height="150">
 </p>
 
@@ -14,7 +14,7 @@
 Present [Learning Go's Concurrency Through Illustrations](/Resources/GoConcurrencyVisualized.md).
 - Source: [link](https://medium.com/@trevor4e/learning-gos-concurrency-through-illustrations-8c4aff603b3)
 
-
+<!--
 ## In Class Activity I (15 min)
 
 **Before Starting**: Brainstorm **command(s)** you'd like your Slackbot to perform.
@@ -76,6 +76,7 @@ $ heroku config:set BOT_OAUTH_ACCESS_TOKEN=YOUR_BOT_TOKEN
 $ git push heroku master
 $ heroku ps:scale worker=1
 ```
+-->
 
 ## Additional Resources
 
