@@ -38,7 +38,6 @@
 
 ## [**10m**] 🌤 Warm Up: Comment All the Things
 
-1. Make sure your MakeUtility project is linked in the [Course Tracker](https://make.sc/trackbew2.5)!
 1. Open up your MakeUtility project. Add at least 5 comments on any of the following top-level public declarations:
 
     - Types
