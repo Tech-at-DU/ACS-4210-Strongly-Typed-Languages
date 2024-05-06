@@ -56,29 +56,32 @@ When you are preparing to publish a package, you should make sure that the docum
 
 1. Double-check to ensure your environment is properly configured. In a standard environment, the following bash variables should be exported at the bottom of your `.bashrc` or `.zshrc` file:
 
-<!--
 ```bash
-export GO111MODULE=on
 export GOPATH=$HOME/go
+export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOPATH/src
-```
--->
 
-1. Install `godoc`:
+mkdir -p $GOPATH $GOPATH/src $GOPATH/pkg $GOPATH/bin
+go install golang.org/x/tools/cmd/godoc@latest
+godoc -http=localhost:6060
+```
+
+
+2. Install `godoc`:
 
      ```bash
-     go install golang.org/x/tools/cmd/godoc@latest
+     go get golang.org/x/tools/cmd/godoc
      ```
      
-2. Open your terminal and change directory to `~/go/src/yourproject`. Run the following code:
+3. Open your terminal and change directory to `~/go/src/yourproject`. Run the following code:
 
      ```bash
+     
      godoc -http :8080
      ```
 
-3. Visit http://localhost:8080/pkg in your browser. Search for the name of your package, and click the link to access your generated GoDocs.
+4. Visit http://localhost:8080/pkg in your browser. Search for the name of your package, and click the link to access your generated GoDocs.
 
     **Example**: In my [Gopherology](https://github.com/droxey/gopherology) project, the generated documentation for the public utils package can be found at http://localhost:8080/pkg/github.com/droxey/gopherology/utils.
 
