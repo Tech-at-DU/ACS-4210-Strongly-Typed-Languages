@@ -66,13 +66,19 @@ export PATH=$PATH:$GOPATH/src
 ```
 -->
 
-1. Open your terminal and change directory to `~/go/src/yourproject`. Run the following code:
+1. Install `godoc`:
+
+     ```bash
+     go install golang.org/x/tools/cmd/godoc@latest
+     ```
+     
+2. Open your terminal and change directory to `~/go/src/yourproject`. Run the following code:
 
      ```bash
      godoc -http=:6060 &
      ```
 
-1. Visit http://localhost:6060/pkg in your browser. Search for the name of your package, and click the link to access your generated GoDocs.
+3. Visit http://localhost:6060/pkg in your browser. Search for the name of your package, and click the link to access your generated GoDocs.
 
     **Example**: In my [Gopherology](https://github.com/droxey/gopherology) project, the generated documentation for the public utils package can be found at http://localhost:6060/pkg/github.com/droxey/gopherology/utils.
 
