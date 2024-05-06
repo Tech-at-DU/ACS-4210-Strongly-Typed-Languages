@@ -247,7 +247,7 @@ brew install fgo
 
 **1b**. Create a [new Personal API Token on GitHub](https://github.com/settings/tokens/new) with the following scopes checked:
 
-<img src="https://tech-at-du.github.io/BEW-2.5-Strongly-Typed-Ecosystems/Lessons/img/new-token.png" width="600">
+<img src="https://tech-at-du.github.io/BEW-2.5-Strongly-Typed-Ecosystems/Lessons/img/new-token.pnghttps://github.com/Tech-at-DU/ACS-4210-Strongly-Typed-Languages/blob/master/Lessons/img/oauth-enable.png?raw=true" width="600">
 
 **1c**. Copy the new token to your clipboard.
 
