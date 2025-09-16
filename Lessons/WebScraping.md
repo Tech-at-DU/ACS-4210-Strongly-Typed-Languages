@@ -37,10 +37,6 @@
 
 Web Scrapers crawl a website, extract it's data, transform that data to a usable structured format, finally writing it to a file or database for subsequent use.
 
-<p align="center">
-  <img src="https://www.scrapehero.com/wp/wp-content/uploads/2018/01/xhow-does-a-web-scraper-work-simple-2.png.pagespeed.ic.MeNRriGmi9.webp">
-</p>
-
 Programs that use this design pattern follow the **Extract-Transform-Load (ETL) Process**.
 
 ### Web Crawling vs. Web Scraping
