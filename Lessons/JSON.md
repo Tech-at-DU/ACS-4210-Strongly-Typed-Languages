@@ -75,7 +75,7 @@ func main() {
             aFloatValue, _ := json.Marshal(2.34)
             fmt.Println(string(aFloatValue))
 
-            aStringValue, _ := json.Marshal("BEW 2.5")
+            aStringValue, _ := json.Marshal("ACS 4210")
             fmt.Println(string(aStringValue))
 }
 ```
