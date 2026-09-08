@@ -1,135 +1,160 @@
-# 📜 Day 5: Fast Functionality Via 3rd Party Libraries
+# Fast Functionality Via 3rd Party Libraries
 
-<!-- omit in toc -->
-## ⏱ Agenda
+| **Elapsed** | **Time** | **Activity** |
+| ----------- | -------- | ------------------------- |
+| 0:00 | 0:05 | Why / Objectives |
+| 0:05 | 0:45 | Overview |
+| 0:50 | 0:10 | BREAK |
+| 1:00 | 0:25 | In Class Activity I |
+| 1:25 | 0:25 | In Class Activity II |
+| 1:50 | 0:05 | Wrap Up |
 
-- [[**15m**] 💻 Activity: Review, Reflect, Resubmit](#15m--activity-review-reflect-resubmit)
-- [[**10m**] 🌴 Break](#10m--break)
-- [[**20m**] 📖 Overview: Intro to Using 3rd Party Libs](#20m--overview-intro-to-using-3rd-party-libs)
-  - [How Go Packages & Modules Work](#how-go-packages--modules-work)
-  - [How Do I Know Where This Stuff Is?](#how-do-i-know-where-this-stuff-is)
-  - [Creating a Module](#creating-a-module)
-  - [Adding 3rd Party Dependencies](#adding-3rd-party-dependencies)
-  - [Configuring .gitignore](#configuring-gitignore)
-  - [How to Find Other People's Modules](#how-to-find-other-peoples-modules)
-- [[**25m**] 💻 Activity: Add Modules Support to Your SSG](#25m--activity-add-modules-support-to-your-ssg)
-- [📚 Resources & Credits](#-resources--credits)
+<details>
+<summary><strong>Instructor prep</strong> (before class)</summary>
 
+- [ ] Confirm students have a **supported** Go (`go version` → current supported majors; as of Sep 2026: **1.27.x / 1.26.x**).
+- [ ] Tabs open: [pkg.go.dev](https://pkg.go.dev), [makesite v1.2](https://github.com/Tech-at-DU/makesite#v12).
+- [ ] Throwaway demo folder ready (`/tmp/quotecheck`).
+- [ ] Optional: `go install golang.org/x/vuln/cmd/govulncheck@latest` once for a fast flash.
 
-<!-- ## 🏆 Objectives
+</details>
 
-| Level         | Verbs                                                                                              |
-| ------------- | -------------------------------------------------------------------------------------------------- |
-| 6: Create     | design, formulate, build, invent, create, compose, generate, derive, modify, develop               |
-| 5: Evaluate   | choose, support, relate, determine, defend, compare, contrast, justify, support, convince, select  |
-| 4: Analyze    | classify, break down, categorize, analyze, diagram, illustrate, criticize, simplify, associate     |
-| 3: Apply      | calculate, predict, apply, solve, illustrate, use, demonstrate, determine, model, perform, present |
-| 2: Understand | describe, explain, paraphrase, restate, summarize, contrast, interpret, discuss                    |
-| 1: Remember   | list, recite, outline, define, name, match, quote, recall, identify, label, recognize              | --> |
+## Why You Should Know This (2 min)
 
-<!-- ## [**30m**] ☀️ Warm Up
+Your SSG only “works on your laptop” until a classmate clones it. **Modules** pin *what* you depend on and *which version*, so builds stop being a scavenger hunt.
 
-Complete [Structs & While Loops](WarmUps.md#30m-️-warm-up-2-structs--while-loops) warmup. -->
+## Learning Objectives (3 min)
 
-## [**15m**] 💻 Activity: Review, Reflect, Resubmit
+1. Define `package` vs `module` and name what `go.mod` / `go.sum` each record.
+2. Initialize a module with `go mod init` and add a dependency with `go get` + `go mod tidy`.
+3. Evaluate a library on [pkg.go.dev](https://pkg.go.dev) before adopting it (path, version, docs, license).
+4. Commit both `go.mod` and `go.sum` so a classmate’s build matches yours.
 
-It's time to breakout into teams of 3 and review each other's solutions.
+## Overview/TT (45 min)
 
-When you enter the breakout room, be sure to share your screen with each other to pair program / get help.
+### Package vs Module (5 min)
 
-If you fix your solution, you can resubmit it for grading by the end of the class period!
+| Term | Meaning | Example |
+| --- | --- | --- |
+| Package | Folder of Go files with one `package` name | `encoding/json` |
+| Module | Versioned unit of distribution (`go.mod` at the root) | `github.com/you/makesite` |
 
-## [**10m**] 🌴 Break
+**Minimal Version Selection (MVS):** for each module path, Go takes the highest version *anyone required* — not “always grab latest from the internet.”
 
-## [**20m**] 📖 Overview: Intro to Using 3rd Party Libs
-
-### How Go Packages & Modules Work
-
-**Workspace**: A directory on your system where Go looks for source code files, manages dependency packages and build distribution binary files. Whenever a Go program encounters an import statement, it looks for the package in the Go's standard library's `src` directory, located in `$GOROOT`.
-
-**Package**: A directory inside your Go workspace containing one or more Go source files, or other Go packages. Every Go source file belongs to a package. To declare a source file to be part of a package, we use the following syntax:
-
-```golang
-package <package_name>
-```
-
-**Module**: A collection of Go packages stored in a file tree with a go. mod file at its root. The `go.mod` file defines the module's module path, which is also the import path used for the root directory, and its dependency requirements, which are the other modules needed for a successful build.
-
-### How Do I Know Where This Stuff Is?
-
-Run `go env` on your system now.
-
-Find the following environment variables and write down their values:
-
--  `GOROOT`
--  `GO111MODULE`
--  `GOPATH`
-
-### Creating a Module
-
- To initialize our project to use modules:
+### Creating a Module (5 min)
 
 ```bash
 go mod init github.com/GITHUB_USERNAME/GITHUB_REPO_NAME
 ```
 
-**NOTE**: The GitHub repository does not have to exist yet. **Discuss why**.
+The GitHub repo does not have to exist yet. **Discuss why.**
 
-### Adding 3rd Party Dependencies
+### Live Demo: `init` → `get` → `run` (15 min)
 
 ```bash
-go mod download <package_url>
+mkdir /tmp/quotecheck && cd /tmp/quotecheck
+go mod init example.com/quotecheck
+go get rsc.io/quote@v1.5.2
 ```
 
-### Configuring .gitignore
+```go
+package main
 
-- It's common to add the `vendor/` directory to your `.gitignore` file. [gitignore.io](http://gitignore.io/api/go)'s base `.gitignore` file for Golang is as follows:
+import (
+	"fmt"
 
-```txt
-# Created by https://www.gitignore.io/api/go
-# Edit at https://www.gitignore.io/?templates=go
+	"rsc.io/quote"
+)
 
-### Go ###
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# Test binary, built with `go test -c`
-*.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-# Dependency directories (remove the comment below to include it)
-# vendor/
-
-### Go Patch ###
-/vendor/
-/Godeps/
-
-# End of https://www.gitignore.io/api/go
+func main() {
+	fmt.Println(quote.Hello())
+}
 ```
 
-### How to Find Other People's Modules
+Then:
 
-- https://pkg.go.dev provides:
-  - Centralized information for Go packages and modules published on index.golang.org.
-  - Essential learning resources
-  - Critical use cases & case studies
-- https://github.com/topics/go: GitHub Topics for Golang
-- https://search.gocenter.io: Quickly searchable index of packages
-- https://twitter.com/RealGophersShip: Twitter bot that highlights Golang package releases.
+```bash
+go mod tidy
+go run .
+go list -m all
+```
 
-## [**25m**] 💻 Activity: Add Modules Support to Your SSG
+Open `go.mod` and `go.sum` together.
 
-Complete the first requirement in the [v1.2 Checklist](https://github.com/Tech-at-DU/makesite#v12) by adding Go Modules support to your project. Use [this tutorial](https://tutorialedge.net/golang/go-modules-tutorial/) as a guide.
+| File | Role |
+| --- | --- |
+| `go.mod` | Module path, `go` line, `require` (and rare `replace` / `exclude` / `retract` / `toolchain`) |
+| `go.sum` | Checksums so Go can prove downloaded bits match |
 
-## 📚 Resources & Credits
+**Commit both.** Deleting `go.sum` is not “cleaning” the repo.
 
-- https://go.dev/about
-- https://blog.golang.org/using-go-modules
-- https://www.callicoder.com/golang-packages/
-- https://medium.com/rungo/working-in-go-workspace-3b0576e0534a
+### Adding Dependencies — command roles (8 min)
+
+| Command | Use it for |
+| --- | --- |
+| `go get path@version` | Add/update a require for *this* module |
+| `go mod tidy` | Make `go.mod` / `go.sum` match imports |
+| `go mod download` | Fill the module *cache* only — not how you add a library to this module |
+| `go install path@version` | Install a *tool* for you — not a dependency of this module |
+
+Even `go mod download path@version` only fills cache; it still does not add a require the way `go get` (or import + tidy) does.
+
+### Evaluating on pkg.go.dev (7 min)
+
+1. Prefer the **stdlib** if it already solves the problem
+2. Copy the import path (include `/v2+` when pkgsite shows it)
+3. Check version, license, docs
+4. Write down **one concrete type or function** you would call
+
+### Failure modes + when *not* to optimize (5 min)
+
+| Symptom | Likely cause | Fix |
+| --- | --- | --- |
+| `-mod=readonly` / “updates to go.mod needed” | Hand-edited `go.mod` or new import without tidy | `go mod tidy`, then rebuild |
+| Import/`go get` 404 for a known `/v2` module | Missing major-version suffix | Copy full path from pkg.go.dev |
+| Classmate can’t build | Missing `go.sum`, leftover `replace`, or uncommitted `go.mod` | Commit both files; drop local-only `replace` / `go.work` |
+
+**Do not “optimize” by:** vendoring early, `GOSUMDB=off`, adding a lib for a one-liner the stdlib does, or blind `go get -u ./...` on deadline day.
+
+## BREAK (10 min)
+
+## In Class Activity I (25 min)
+
+1. Open your **makesite** (SSG) repo.
+2. If you do not have a module yet: `go mod init github.com/YOUR_USER/YOUR_REPO`.
+3. Add **one** third-party dependency you actually need (or `rsc.io/quote` while exploring).
+4. Run `go mod tidy`. Confirm `go.mod` and a non-empty `go.sum`.
+5. Commit **both** files. Push.
+
+## In Class Activity II (25 min)
+
+1. On [pkg.go.dev](https://pkg.go.dev), evaluate **one** library relevant to your SSG.
+2. Write in your README (or Slack):
+   - import path (incl. `/v2+` if shown)
+   - version you’d pin
+   - license
+   - one risk (API churn / maintenance / vuln)
+   - one concrete type or function signature you’d call
+3. Prefer stdlib if it already covers the need — say so explicitly.
+
+### Stretch Challenges
+
+1. What breaks for a classmate if you commit a `replace => ../local` or a `go.work` file by accident?
+2. What does `-mod=readonly` mean in CI, and how do you fix “updates to go.mod needed”?
+3. When would you *not* add a third-party dependency?
+
+## Wrap Up (5 min)
+
+Paste in Slack / Zoom:
+
+1. Your `module` line from `go.mod`
+2. One sentence: what does `go.mod` decide vs what does `go.sum` prove?
+
+## Additional Resources
+
+1. **[Using Go Modules](https://go.dev/blog/using-go-modules)** — canonical walkthrough.
+2. **[Managing dependencies](https://go.dev/doc/modules/managing-dependencies)** — `get` / `tidy` / upgrade habits.
+3. **[pkg.go.dev](https://pkg.go.dev)** — discover and evaluate modules.
+4. **[Modules reference — MVS](https://go.dev/ref/mod#minimal-version-selection)** — optional depth.
+5. **[Major version suffixes (`/v2+`)](https://go.dev/ref/mod#major-version-suffixes)** — optional depth.
+6. **[makesite v1.2](https://github.com/Tech-at-DU/makesite#v12)** — SSG milestone this unlocks.
