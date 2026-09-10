@@ -7,9 +7,9 @@
 | ----------- | -------- | ------------------------- |
 | 0:00 | 0:05 | Why / Objectives |
 | 0:05 | 0:40 | Overview / TT |
-| 0:45 | 0:20 | Hands-on 1 |
+| 0:45 | 0:20 | Activity 1 |
 | 1:05 | 0:10 | BREAK |
-| 1:15 | 0:30 | Hands-on 2 |
+| 1:15 | 0:30 | Activity 2 |
 | 1:45 | 0:10 | Lab Time |
 | 1:55 | 0:05 | Wrap Up |
 | **TOTAL** | **2:00** | |
@@ -43,9 +43,9 @@ If you can write middleware well, you can:
 
 ## Overview / TT (40 min)
 
-**Next action:** Run this talk track — GOAL, then the onion, then code.  
+**Next action:** Run this talk track — GOAL first, then the onion, then code.  
 **Done when:** The room can sketch the onion and say one sentence for “when NOT middleware.”  
-**≤2m next after TT:** Open Hands-on 1 and create the module.
+**≤2m next after TT:** Open Activity 1 and create the module.
 
 ### 1. GOAL — what “good” looks like (~5m)
 
@@ -204,7 +204,7 @@ Then run it. Point at `Server` in the response.
 
 Optional stretch while talking: the official [Custom Middleware cookbook](https://echo.labstack.com/cookbook/middleware/) `Stats.Process` pattern — count requests **after** `next(c)` so status codes are real.
 
-### 5. IP reality check — fuel for Hands-on 2 (~10m)
+### 5. IP reality check — fuel for Activity 2 (~10m)
 
 Echo gives you `c.RealIP()`. **That string is only as trustworthy as `e.IPExtractor`.**
 
@@ -233,11 +233,11 @@ From Echo’s IP guide:
 
 Say:
 
-> “Hands-on 1: get the hallway compiling — Recover, RequestID, one custom header middleware, `/whoami` printing RealIP. Hands-on 2: decide inside/outside and name the traps. Lab: harden one sharp edge. Break in twenty.”
+> “Activity 1: get the hallway compiling — Recover, RequestID, one custom header middleware, `/whoami` printing RealIP. Activity 2: decide inside/outside and name the traps. Lab: harden one sharp edge. Break in twenty.”
 
 ---
 
-## Hands-on 1 (20 min) — Hallway MVP
+## Activity 1 (20 min) — Hallway MVP
 
 **Goal:** A running Echo server with real middleware registration.  
 **Artifact:** repo (or folder) with `main.go` that boots on `:1323`.  
@@ -284,7 +284,7 @@ Say:
 Built: hallway MVP (Recover + RequestID + custom header + /whoami)
 Verified: curl -i → header present, ip=
 Blocked by:
-Next: Hands-on 2 inside-the-building decision
+Next: Activity 2 inside-the-building decision
 ```
 
 ### Stretch (only if MVP is green)
@@ -297,11 +297,11 @@ Next: Hands-on 2 inside-the-building decision
 ## BREAK (10 min)
 
 Stand up. Leave the server running if you want — or kill it and restart after break.  
-**≤2m next when back:** open Hands-on 2; don’t invent a new repo.
+**≤2m next when back:** open Activity 2; don’t invent a new repo.
 
 ---
 
-## Hands-on 2 (30 min) — Inside the Building
+## Activity 2 (30 min) — Inside the Building
 
 **Goal:** Custom middleware (or helper used by middleware) that labels a request as inside/outside.  
 **Artifact:** `/whoami` JSON includes `inside` (bool) + `via` (how you decided) + `ip`.  
@@ -380,7 +380,7 @@ func main() {
 
 ### Steps
 
-1. Keep Hands-on 1’s module. Set `e.IPExtractor = echo.ExtractIPDirect()`.  
+1. Keep Activity 1’s module. Set `e.IPExtractor = echo.ExtractIPDirect()`.  
 2. Add `InsideTheBuilding` as above (or equivalent). Register it **after** Recover/RequestID.  
 3. Extend `/whoami` to return `inside` and `via`.  
 4. **Verify green path:**
@@ -463,9 +463,16 @@ Trap I can explain:
 
 ---
 
+<details>
+<summary>For curriculum authors</summary>
+
 ## For curriculum authors
 
-### ADHD run-of-show (whole session)
+<details>
+<summary>For curriculum authors</summary>
+
+
+### Run-of-show (whole session)
 
 | | |
 | --- | --- |
@@ -481,8 +488,12 @@ Today's MVP (1 sentence):
 
 ### Facilitator notes
 
-- Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Hands-on 1.  
-- Solo lab by design. Optional after Hands-on 2: 60s compare of `via` strings.  
+- Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Activity 1.  
+- Solo lab by design. Optional after Activity 2: 60s compare of `via` strings.  
 - Keep all four pulse checks; they replace digressions.  
 - Module on **echo/v4**? Keep walking the onion; swap to `echo.Context` + `middleware.Logger()`. No mid-session major bump unless they’re unblocked.  
 - **Go gate (say once):** Echo **v5** → **Go ≥ 1.25**; otherwise stay on **v4**.
+
+</details>
+
+</details>
