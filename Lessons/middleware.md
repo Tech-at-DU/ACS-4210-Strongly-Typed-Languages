@@ -468,7 +468,7 @@ Trap I can explain:
 
 ## For curriculum authors
 
-### Run-of-show
+### In Class
 
 | | |
 | --- | --- |
