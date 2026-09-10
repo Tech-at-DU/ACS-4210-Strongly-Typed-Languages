@@ -19,7 +19,7 @@
 <!-- omit in toc -->
 ## 🏆 Objectives
 
-*By the end of this class, you'll be able to&hellip;*
+*By the end of this session, you'll be able to&hellip;*
 
 1. **Define** middleware and name three jobs that belong there (cross-cutting) vs three that do **not**.
 1. **Trace** an Echo request: `Pre` → router → `Use` chain → handler → unwind, including why registration order matters.
@@ -46,7 +46,7 @@ If you can write middleware well, you can:
 
 **Job-sim prompt (think → chat → share):** You’re reviewing a PR that pastes the same access logger into twelve handlers *and* puts “can this user buy this SKU?” in a global `e.Use`. In one sentence each: what stays in the hallway, and what moves to the handler/service?
 
-Whiteboard / screen three buckets if the room is quiet:
+Whiteboard / screen three buckets if chat stays quiet:
 
 | Belongs in middleware | Belongs in handler / service | Maybe either — decide on purpose |
 | --- | --- | --- |
@@ -63,7 +63,7 @@ Whiteboard / screen three buckets if the room is quiet:
 ## [**35m**] 📚 TT: Overview
 
 **Next action:** Run this talk track — GOAL first, then the onion, then code.  
-**Done when:** The room can sketch the onion and say one sentence for “when NOT middleware.”  
+**Done when:** You can sketch the onion and say one sentence for “when NOT middleware.”  
 **≤2m next after TT:** Open Activity 1 and create the module.
 
 ### 1. GOAL — what “good” looks like (~5m)
@@ -71,6 +71,8 @@ Whiteboard / screen three buckets if the room is quiet:
 Say:
 
 > “Handlers do the *work* of a route. Middleware does the *policies* that apply to many routes. If you catch yourself putting ‘is this user allowed to buy this SKU?’ in middleware, stop — that’s handler (or service) territory. If you catch yourself pasting the same logger into twelve handlers, that’s middleware.”
+
+<!-- -->
 
 > **ASK AUDIENCE:** Which layer owns authz for “can this user buy this SKU?” — middleware or handler/service?
 
@@ -115,16 +117,16 @@ Code shape of “before and after”:
 
 ```go
 func TraceName(name string) echo.MiddlewareFunc {
-	return func(next echo.HandlerFunc) echo.HandlerFunc {
-		return func(c *echo.Context) error {
-			// BEFORE next
-			c.Logger().Info("enter", "mw", name)
-			err := next(c)
-			// AFTER next (always runs unless you panic without Recover)
-			c.Logger().Info("leave", "mw", name)
-			return err
-		}
-	}
+    return func(next echo.HandlerFunc) echo.HandlerFunc {
+        return func(c *echo.Context) error {
+            // BEFORE next
+            c.Logger().Info("enter", "mw", name)
+            err := next(c)
+            // AFTER next (always runs unless you panic without Recover)
+            c.Logger().Info("leave", "mw", name)
+            return err
+        }
+    }
 }
 ```
 
@@ -198,32 +200,32 @@ Speak while typing (or paste once, then walk):
 package main
 
 import (
-	"net/http"
+    "net/http"
 
-	"github.com/labstack/echo/v5"
-	"github.com/labstack/echo/v5/middleware"
+    "github.com/labstack/echo/v5"
+    "github.com/labstack/echo/v5/middleware"
 )
 
 func ServerHeader(next echo.HandlerFunc) echo.HandlerFunc {
-	return func(c *echo.Context) error {
-		c.Response().Header().Set(echo.HeaderServer, "ACS-4210-Echo")
-		return next(c)
-	}
+    return func(c *echo.Context) error {
+        c.Response().Header().Set(echo.HeaderServer, "ACS-4210-Echo")
+        return next(c)
+    }
 }
 
 func main() {
-	e := echo.New()
-	e.Use(middleware.Recover())
-	e.Use(middleware.RequestID())
-	e.Use(ServerHeader)
+    e := echo.New()
+    e.Use(middleware.Recover())
+    e.Use(middleware.RequestID())
+    e.Use(ServerHeader)
 
-	e.GET("/", func(c *echo.Context) error {
-		return c.String(http.StatusOK, "hallway cleared")
-	})
+    e.GET("/", func(c *echo.Context) error {
+        return c.String(http.StatusOK, "hallway cleared")
+    })
 
-	if err := e.Start(":1323"); err != nil {
-		e.Logger.Error("failed to start server", "error", err)
-	}
+    if err := e.Start(":1323"); err != nil {
+        e.Logger.Error("failed to start server", "error", err)
+    }
 }
 ```
 
@@ -270,6 +272,8 @@ Say:
 
 > “Activity 1: get the hallway compiling — Recover, RequestID, one custom header middleware, `/whoami` printing RealIP. Activity 2: decide inside/outside and name the traps. Stretch inside Activity 2 if you finish early: harden one sharp edge. Break next.”
 
+<!-- -->
+
 > **ASK AUDIENCE:** What is the done-state for Activity 1?
 
 <details>
@@ -278,10 +282,6 @@ Say:
 `/whoami` returns 200 JSON with `ip`, and the response includes your custom header (`curl -i localhost:1323/whoami`).
 
 </details>
-
-<aside class="notes">
-Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Activity 1. Keep all ASK AUDIENCE pulses; they replace digressions.
-</aside>
 
 <!-- > -->
 
@@ -347,7 +347,7 @@ Next: Activity 2 inside-the-building decision
 - Add `middleware.RequestLogger()` and watch one access line per curl.  
 - Register `TraceName("A")` then `TraceName("B")` and predict log order before running.
 
-If you finish early, help someone in your breakout who is stuck.
+If you finish early, help a peer who’s stuck.
 
 <!-- > -->
 
@@ -379,52 +379,52 @@ People want “inside the building” for: office-only admin UIs, friendlier err
 package main
 
 import (
-	"net"
-	"net/http"
+    "net"
+    "net/http"
 
-	"github.com/labstack/echo/v5"
-	"github.com/labstack/echo/v5/middleware"
+    "github.com/labstack/echo/v5"
+    "github.com/labstack/echo/v5/middleware"
 )
 
 func InsideTheBuilding(next echo.HandlerFunc) echo.HandlerFunc {
-	return func(c *echo.Context) error {
-		ipStr := c.RealIP()
-		ip := net.ParseIP(ipStr)
-		inside := false
-		via := "unparseable"
-		if ip != nil {
-			inside = ip.IsLoopback() || ip.IsPrivate()
-			via = "realip+private/loopback"
-		}
-		c.Set("inside", inside)
-		c.Set("via", via)
-		c.Response().Header().Set("X-Inside-The-Building", map[bool]string{true: "1", false: "0"}[inside])
-		return next(c)
-	}
+    return func(c *echo.Context) error {
+        ipStr := c.RealIP()
+        ip := net.ParseIP(ipStr)
+        inside := false
+        via := "unparseable"
+        if ip != nil {
+            inside = ip.IsLoopback() || ip.IsPrivate()
+            via = "realip+private/loopback"
+        }
+        c.Set("inside", inside)
+        c.Set("via", via)
+        c.Response().Header().Set("X-Inside-The-Building", map[bool]string{true: "1", false: "0"}[inside])
+        return next(c)
+    }
 }
 
 func main() {
-	e := echo.New()
-	// Local/dev: trust the network peer only.
-	e.IPExtractor = echo.ExtractIPDirect()
+    e := echo.New()
+    // Local/dev: trust the network peer only.
+    e.IPExtractor = echo.ExtractIPDirect()
 
-	e.Use(middleware.Recover())
-	e.Use(middleware.RequestID())
-	e.Use(InsideTheBuilding)
+    e.Use(middleware.Recover())
+    e.Use(middleware.RequestID())
+    e.Use(InsideTheBuilding)
 
-	e.GET("/whoami", func(c *echo.Context) error {
-		inside, _ := c.Get("inside").(bool)
-		via, _ := c.Get("via").(string)
-		return c.JSON(http.StatusOK, map[string]any{
-			"ip":     c.RealIP(),
-			"inside": inside,
-			"via":    via,
-		})
-	})
+    e.GET("/whoami", func(c *echo.Context) error {
+        inside, _ := c.Get("inside").(bool)
+        via, _ := c.Get("via").(string)
+        return c.JSON(http.StatusOK, map[string]any{
+            "ip":     c.RealIP(),
+            "inside": inside,
+            "via":    via,
+        })
+    })
 
-	if err := e.Start(":1323"); err != nil {
-		e.Logger.Error("failed to start server", "error", err)
-	}
+    if err := e.Start(":1323"); err != nil {
+        e.Logger.Error("failed to start server", "error", err)
+    }
 }
 ```
 
