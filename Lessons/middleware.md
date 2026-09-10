@@ -1,22 +1,40 @@
-<!-- markdownlint-disable MD010 -->
+<!-- Run as a slideshow: reveal-md Lessons/Lesson1.md -w -->
 # APIs, Middleware, and You
 
 ⭐️ **GOAL:** Leave able to explain why middleware exists, trace an Echo request through the onion, and ship a custom `e.Use` middleware that labels “inside the building?” without trusting spoofable headers.
 
-| **Elapsed** | **Time** | **Activity** |
-| ----------- | -------- | ------------------------- |
-| 0:00 | 0:05 | Why / Objectives |
-| 0:05 | 0:40 | Overview / TT |
-| 0:45 | 0:20 | Activity 1 |
-| 1:05 | 0:10 | BREAK |
-| 1:15 | 0:30 | Activity 2 |
-| 1:45 | 0:10 | Lab Time |
-| 1:55 | 0:05 | Wrap Up |
-| **TOTAL** | **2:00** | |
+<!-- omit in toc -->
+## ⏱ Agenda
 
----
+- [[**5m**] Attendance &amp; Announcements](#5m-attendance--announcements)
+- [[**15m**] ☀️ Warm Up](#15m-️-warm-up)
+- [[**35m**] 📚 TT: Overview](#35m--tt-overview)
+- [[**10m**] 🌴 Break](#10m--break)
+- [[**20m**] 💻 Activity 1](#20m--activity-1)
+- [[**30m**] 💻 Activity 2](#30m--activity-2)
+- [[**5m**] Wrap Up](#5m-wrap-up)
 
-## Why You Should Know This (2 min)
+<!-- > -->
+
+<!-- omit in toc -->
+## 🏆 Objectives
+
+*By the end of this class, you'll be able to&hellip;*
+
+1. **Define** middleware and name three jobs that belong there (cross-cutting) vs three that do **not**.
+1. **Trace** an Echo request: `Pre` → router → `Use` chain → handler → unwind, including why registration order matters.
+1. **Implement** a custom Echo middleware (`func(next echo.HandlerFunc) echo.HandlerFunc`) and register it with `e.Use`.
+1. **Build** an “inside the building” detector that uses `c.RealIP()` / private ranges **and** names the header-spoof traps.
+
+**How you’ll know:** `/whoami` returns JSON with `ip`, `inside`, and `via`, and a forged `X-Forwarded-For` does **not** silently flip the answer unless you explicitly opted into that extractor.
+
+<!-- > -->
+
+## [**5m**] Attendance &amp; Announcements
+
+<!-- > -->
+
+## [**15m**] ☀️ Warm Up
 
 Middleware is the **hallway** of your API. Every request walks through it before a handler runs — and often again on the way out.
 
@@ -26,34 +44,9 @@ If you can write middleware well, you can:
 - keep handlers thin: **parse → decide → respond**
 - spot rookie traps: stuffing business logic into the hallway, trusting spoofable IP headers, or registering middleware in the wrong order
 
-**GOAL:** leave able to explain *why* middleware exists, walk a request through Echo’s lifecycle, and ship a custom middleware that decides “inside the building?” without lying to yourself about headers.
+**Job-sim prompt (think → chat → share):** You’re reviewing a PR that pastes the same access logger into twelve handlers *and* puts “can this user buy this SKU?” in a global `e.Use`. In one sentence each: what stays in the hallway, and what moves to the handler/service?
 
----
-
-## Outcomes (3 min)
-
-1. **Define** middleware and name five jobs that belong there vs three that do not.
-2. **Trace** an Echo request: `Pre` → router → `Use` chain → handler → unwind, including why registration order matters.
-3. **Implement** a custom Echo middleware (`func(next echo.HandlerFunc) echo.HandlerFunc`) and register it with `e.Use`.
-4. **Build** an “inside the building” detector that uses `c.RealIP()` / private ranges **and** names the header-spoof traps.
-
-**How you’ll know:** `/whoami` returns JSON with `ip`, `inside`, and `via`, and a forged `X-Forwarded-For` does **not** silently flip the answer unless you explicitly opted into that extractor.
-
----
-
-## Overview / TT (40 min)
-
-**Next action:** Run this talk track — GOAL, then the onion, then code.  
-**Done when:** The room can sketch the onion and say one sentence for “when NOT middleware.”  
-**≤2m next after TT:** Open Activity 1 and create the module.
-
-### 1. GOAL — what “good” looks like (~5m)
-
-Say:
-
-> “Handlers do the *work* of a route. Middleware does the *policies* that apply to many routes. If you catch yourself putting ‘is this user allowed to buy this SKU?’ in middleware, stop — that’s handler (or service) territory. If you catch yourself pasting the same logger into twelve handlers, that’s middleware.”
-
-Whiteboard / screen three buckets:
+Whiteboard / screen three buckets if the room is quiet:
 
 | Belongs in middleware | Belongs in handler / service | Maybe either — decide on purpose |
 | --- | --- | --- |
@@ -63,9 +56,30 @@ Whiteboard / screen three buckets:
 | Rate limit / body size cap | Orchestrating third-party APIs | — |
 | Tracing span start/end | — | — |
 
-**Beginner tip for on-the-job success:** middleware should be **cheap, predictable, and side-effect light**. Heavy work belongs deeper.
+**Rookie tip for on-the-job success:** middleware should be **cheap, predictable, and side-effect light**. Heavy work belongs deeper.
 
-**Pulse check 1 (≤60s):** Which layer owns authz for “can this user buy this SKU?” — middleware or handler/service? Drop one word in chat or raise a hand. Expected: **handler/service** (middleware can do a thin authn gate; SKU rules stay out of the hallway).
+<!-- > -->
+
+## [**35m**] 📚 TT: Overview
+
+**Next action:** Run this talk track — GOAL first, then the onion, then code.  
+**Done when:** The room can sketch the onion and say one sentence for “when NOT middleware.”  
+**≤2m next after TT:** Open Activity 1 and create the module.
+
+### 1. GOAL — what “good” looks like (~5m)
+
+Say:
+
+> “Handlers do the *work* of a route. Middleware does the *policies* that apply to many routes. If you catch yourself putting ‘is this user allowed to buy this SKU?’ in middleware, stop — that’s handler (or service) territory. If you catch yourself pasting the same logger into twelve handlers, that’s middleware.”
+
+> **ASK AUDIENCE:** Which layer owns authz for “can this user buy this SKU?” — middleware or handler/service?
+
+<details>
+<summary>Answer</summary>
+
+**Handler/service.** Middleware can do a thin authn gate; SKU rules stay out of the hallway.
+
+</details>
 
 ### 2. The onion — Echo request lifecycle (~9m)
 
@@ -114,7 +128,14 @@ func TraceName(name string) echo.MiddlewareFunc {
 }
 ```
 
-**Pulse check 2 (≤60s):** `Pre` vs `Use` — which lane still runs on a 404? Expected: **`Pre`**.
+> **ASK AUDIENCE:** `Pre` vs `Use` — which lane still runs on a 404?
+
+<details>
+<summary>Answer</summary>
+
+**`Pre`.** It runs before the router matches a route, so it still sees 404s. `Use` only runs after a route match.
+
+</details>
 
 **Order that won’t embarrass you in review** (outer → inner):
 
@@ -158,7 +179,14 @@ e.Use(middleware.RequestLogger()) // v5: prefer this over the removed Logger()
 
 **Sample vs safer ship order:** Echo’s own hello-world often registers `RequestLogger` *before* `Recover` (logger outer so it can observe the recovered error). Today’s TT still defaults to **Recover outermost** as the safer ship default when you panic-proof *everything* including logger middleware — call the tradeoff in one sentence if someone notices the docs differ.
 
-**Pulse check 3 (≤60s):** Recover outer vs logger outer — which do you ship by default here, and why? Expected: **Recover outermost** so a panic inside logger middleware (or anything below) still becomes a 500, not process death. Logger-outer is a valid alternative when you want the access log to record the recovered error — name the tradeoff.
+> **ASK AUDIENCE:** Recover outer vs logger outer — which do you ship by default here, and why?
+
+<details>
+<summary>Answer</summary>
+
+**Recover outermost** so a panic inside logger middleware (or anything below) still becomes a 500, not process death. Logger-outer is a valid alternative when you want the access log to record the recovered error — name the tradeoff.
+
+</details>
 
 If the service under review is still on **v4**, the *ideas* are identical; swap types/imports and use `middleware.Logger()` where `RequestLogger` isn’t available.
 
@@ -190,7 +218,7 @@ func main() {
 	e.Use(ServerHeader)
 
 	e.GET("/", func(c *echo.Context) error {
-		return c.String(http.StatusOK, "ok")
+		return c.String(http.StatusOK, "hallway cleared")
 	})
 
 	if err := e.Start(":1323"); err != nil {
@@ -204,7 +232,7 @@ Then run it. Point at `Server` in the response.
 
 Optional stretch while talking: the official [Custom Middleware cookbook](https://echo.labstack.com/cookbook/middleware/) `Stats.Process` pattern — count requests **after** `next(c)` so status codes are real.
 
-### 5. IP reality check — fuel for Activity 2 (~10m)
+### 5. IP reality check — fuel for Activity 2 (~7m)
 
 Echo gives you `c.RealIP()`. **That string is only as trustworthy as `e.IPExtractor`.**
 
@@ -227,17 +255,44 @@ From Echo’s IP guide:
 
 **Private ranges (stdlib):** `net.ParseIP(ip).IsPrivate()` (and loopback via `IsLoopback()`). That’s enough for today’s lab definition of “inside.”
 
-**Pulse check 4 (≤60s):** Trust `X-Forwarded-For` from a random client? **Yes / No.** Expected: **No.** Yes only when a **trusted** proxy in *your* infra appends hops and the edge strips client-supplied XFF.
+> **ASK AUDIENCE:** Trust `X-Forwarded-For` from a random client? Yes or No?
+
+<details>
+<summary>Answer</summary>
+
+**No.** Yes only when a **trusted** proxy in *your* infra appends hops and the edge strips client-supplied XFF.
+
+</details>
 
 ### 6. Bridge into practice (~2m)
 
 Say:
 
-> “Activity 1: get the hallway compiling — Recover, RequestID, one custom header middleware, `/whoami` printing RealIP. Activity 2: decide inside/outside and name the traps. Lab: harden one sharp edge. Break in twenty.”
+> “Activity 1: get the hallway compiling — Recover, RequestID, one custom header middleware, `/whoami` printing RealIP. Activity 2: decide inside/outside and name the traps. Stretch inside Activity 2 if you finish early: harden one sharp edge. Break next.”
 
----
+> **ASK AUDIENCE:** What is the done-state for Activity 1?
 
-## Activity 1 (20 min) — Hallway MVP
+<details>
+<summary>Answer</summary>
+
+`/whoami` returns 200 JSON with `ip`, and the response includes your custom header (`curl -i localhost:1323/whoami`).
+
+</details>
+
+<aside class="notes">
+Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Activity 1. Keep all ASK AUDIENCE pulses; they replace digressions.
+</aside>
+
+<!-- > -->
+
+## [**10m**] 🌴 Break
+
+Stand up. Leave the server running if you want — or kill it and restart after break.  
+**≤2m next when back:** open Activity 1 if you haven’t started; don’t invent a new repo after Activity 1.
+
+<!-- > -->
+
+## [**20m**] 💻 Activity 1
 
 **Goal:** A running Echo server with real middleware registration.  
 **Artifact:** repo (or folder) with `main.go` that boots on `:1323`.  
@@ -292,16 +347,11 @@ Next: Activity 2 inside-the-building decision
 - Add `middleware.RequestLogger()` and watch one access line per curl.  
 - Register `TraceName("A")` then `TraceName("B")` and predict log order before running.
 
----
+If you finish early, help someone in your breakout who is stuck.
 
-## BREAK (10 min)
+<!-- > -->
 
-Stand up. Leave the server running if you want — or kill it and restart after break.  
-**≤2m next when back:** open Activity 2; don’t invent a new repo.
-
----
-
-## Activity 2 (30 min) — Inside the Building
+## [**30m**] 💻 Activity 2
 
 **Goal:** Custom middleware (or helper used by middleware) that labels a request as inside/outside.  
 **Artifact:** `/whoami` JSON includes `inside` (bool) + `via` (how you decided) + `ip`.  
@@ -417,21 +467,17 @@ Trap I can explain:
 - Do not put DB lookups in this middleware.  
 - Do not block the handler with a 403 unless you **intentionally** chose “enforce” mode and documented it — today’s default is **label + header + JSON**, not a lock.
 
----
+### Stretch (former Lab Time — pick one if MVP is green)
 
-## Lab Time (10 min)
-
-**Next action:** Pick one stretch; ship the checkpoint.  
-**Done when:** `/whoami` still works and you improved one sharp edge.  
-**≤2m next:** Choose from the list — don’t start all three.
+**Done when:** `/whoami` still works and you improved one sharp edge. Don’t start all three.
 
 1. **Enforce mode** — if `inside == false`, return `echo.NewHTTPError(http.StatusForbidden, "outside the building")` on a nested group `e.Group("/internal", InsideTheBuilding)` instead of globally.  
 2. **Trusted-header path** — read `X-Campus` **only after** documenting “proxy must strip inbound”; never enable it with the default extractor.  
 3. **Order demo** — add two tiny middlewares that log enter/leave; screenshot or paste the order proving outer→inner→handler→inner→outer.
 
----
+<!-- > -->
 
-## Wrap Up (5 min)
+## [**5m**] Wrap Up
 
 **GOAL check:** You can say, in one breath:
 
@@ -449,7 +495,7 @@ Trap I can explain:
 - Read [IP Address](https://echo.labstack.com/guide/ip-address/) — especially the XFF “from the right” diagram.  
 - Sketch where middleware would live in your API service (logging + request ID first).
 
----
+<!-- > -->
 
 ## Additional Resources
 
@@ -461,18 +507,14 @@ Trap I can explain:
 6. **[Go — `net.IP.IsPrivate`](https://pkg.go.dev/net#IP.IsPrivate)** — private network detection for the lab.  
 7. **[go.dev — Writing Web Applications](https://go.dev/doc/articles/wiki/)** — baseline HTTP mental model if anyone needs to zoom out from Echo.
 
----
-
 <details>
 <summary>For curriculum authors</summary>
-
-## For curriculum authors
 
 ### In Class
 
 | | |
 | --- | --- |
-| **Next action** | Open this file → skim the agenda table → start Why / Objectives at 1:00. |
+| **Next action** | Open this file → skim the Agenda jump list → start Attendance, then Warm Up. |
 | **Done when** | You have a running Echo app with custom middleware + an “inside the building” decision you can demo with `curl`. |
 | **≤2m next** | Paste the Feeling check-in into notes: Feeling / Behind\|On track\|Ahead / Today’s MVP. |
 
@@ -482,12 +524,22 @@ Behind | On track | Ahead:
 Today's MVP (1 sentence):
 ```
 
+- Warm-up is a Zoom variety beat: keep it short, memorable, and easy to explain (job-sim PR review is fine).
+- Breakouts of 3–4 if used. Visit rooms; do not dump extra instructor direction into the body above.
+- After Activity 1, debrief one failure mode in the main room (missing header, wrong extractor, Go/v5 gate).
+
 ### Facilitator notes
 
-- Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Activity 1.  
-- Solo lab by design. Optional after Activity 2: 60s compare of `via` strings.  
-- Keep all four pulse checks; they replace digressions.  
-- Module on **echo/v4**? Keep walking the onion; swap to `echo.Context` + `middleware.Logger()`. No mid-session major bump unless they’re unblocked.  
+- Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Activity 1.
+- Solo lab by design. Optional after Activity 2: 60s compare of `via` strings.
+- Keep all ASK AUDIENCE pulses; they replace digressions.
+- Module on **echo/v4**? Keep walking the onion; swap to `echo.Context` + `middleware.Logger()`. No mid-session major bump unless they’re unblocked.
 - **Go gate (say once):** Echo **v5** → **Go ≥ 1.25**; otherwise stay on **v4**.
+- Live-code the first five minutes of the skeleton only. Then get out of the way.
+- Activity 2 stretch (former Lab Time) is the early-finisher extension.
+
+### Expert follow-ups
+
+- Optional after-session: Echo Custom Middleware cookbook end-to-end; IP guide XFF “from the right” diagram; sketch middleware placement in a real API service.
 
 </details>
