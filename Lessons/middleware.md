@@ -43,7 +43,7 @@ If you can write middleware well, you can:
 
 ## Overview / TT (40 min)
 
-**Next action:** Run this talk track — GOAL first, then the onion, then code.  
+**Next action:** Run this talk track — GOAL, then the onion, then code.  
 **Done when:** The room can sketch the onion and say one sentence for “when NOT middleware.”  
 **≤2m next after TT:** Open Activity 1 and create the module.
 
@@ -468,10 +468,6 @@ Trap I can explain:
 
 ## For curriculum authors
 
-<details>
-<summary>For curriculum authors</summary>
-
-
 ### In Class (whole session)
 
 | | |
@@ -493,7 +489,5 @@ Today's MVP (1 sentence):
 - Keep all four pulse checks; they replace digressions.  
 - Module on **echo/v4**? Keep walking the onion; swap to `echo.Context` + `middleware.Logger()`. No mid-session major bump unless they’re unblocked.  
 - **Go gate (say once):** Echo **v5** → **Go ≥ 1.25**; otherwise stay on **v4**.
-
-</details>
 
 </details>
