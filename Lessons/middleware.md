@@ -1,13 +1,6 @@
 <!-- markdownlint-disable MD010 -->
 # APIs, Middleware, and You
 
-**Author:** Dani Roxberry  
-**Session block:** Thu Sep 10, 2026 · 1:00–3:00pm America/New_York  
-**Topic:** Echo middleware — request lifecycle, order, custom middleware, “inside the building” detection  
-**Bars:** job-sim voice · 40m TT · 4 mid-TT pulse checks · syllabus lesson shape.  
-**Accuracy check:** green (2026-09-10) — companion Expert notes live under `Reviews/` (not in this body).  
-**MVP (≤15m):** one custom `e.Use(...)` middleware that sets a response header + a `/whoami` JSON handler that prints `c.RealIP()` and whether it looks internal.
-
 ⭐️ **GOAL:** Leave able to explain why middleware exists, trace an Echo request through the onion, and ship a custom `e.Use` middleware that labels “inside the building?” without trusting spoofable headers.
 
 | **Elapsed** | **Time** | **Activity** |
