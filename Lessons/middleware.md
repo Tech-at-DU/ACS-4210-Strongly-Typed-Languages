@@ -16,22 +16,6 @@
 
 ---
 
-## ADHD run-of-show (whole session)
-
-| | |
-| --- | --- |
-| **Next action** | Open this file → skim the agenda table → start Why / Objectives at 1:00. |
-| **Done when** | You have a running Echo app with custom middleware + an “inside the building” decision you can demo with `curl`. |
-| **≤2m next** | Paste the Feeling check-in into notes: Feeling / Behind\|On track\|Ahead / Today’s MVP. |
-
-```text
-Feeling (1 word):
-Behind | On track | Ahead:
-Today's MVP (1 sentence):
-```
-
----
-
 ## Why You Should Know This (2 min)
 
 Middleware is the **hallway** of your API. Every request walks through it before a handler runs — and often again on the way out.
@@ -59,11 +43,11 @@ If you can write middleware well, you can:
 
 ## Overview / TT (40 min)
 
-**Next action:** Run this talk track — destination first, then the onion, then code.  
+**Next action:** Run this talk track — GOAL, then the onion, then code.  
 **Done when:** The room can sketch the onion and say one sentence for “when NOT middleware.”  
 **≤2m next after TT:** Open Hands-on I and create the module.
 
-### 1. Destination first — what “good” looks like (~5m)
+### 1. GOAL — what “good” looks like (~5m)
 
 Say:
 
@@ -479,7 +463,23 @@ Trap I can explain:
 
 ---
 
-## Facilitator notes (topic-only · job sim)
+## For curriculum authors
+
+### ADHD run-of-show (whole session)
+
+| | |
+| --- | --- |
+| **Next action** | Open this file → skim the agenda table → start Why / Objectives at 1:00. |
+| **Done when** | You have a running Echo app with custom middleware + an “inside the building” decision you can demo with `curl`. |
+| **≤2m next** | Paste the Feeling check-in into notes: Feeling / Behind\|On track\|Ahead / Today’s MVP. |
+
+```text
+Feeling (1 word):
+Behind | On track | Ahead:
+Today's MVP (1 sentence):
+```
+
+### Facilitator notes
 
 - Prefer speakable TT. Behind at ~0:35? Skip the Stats aside — jump to IP traps → Hands-on I.  
 - Solo lab by design. Optional after Hands-on II: 60s compare of `via` strings.  
