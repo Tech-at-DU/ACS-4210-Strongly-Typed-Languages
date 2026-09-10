@@ -465,7 +465,7 @@ Trap I can explain:
 
 ## For curriculum authors
 
-### ADHD run-of-show (whole session)
+### Run-of-show (whole session)
 
 | | |
 | --- | --- |
