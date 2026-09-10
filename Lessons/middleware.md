@@ -32,7 +32,7 @@ If you can write middleware well, you can:
 
 ## Outcomes (3 min)
 
-1. **Define** middleware and name three jobs that belong there (cross-cutting) vs three that do **not**.
+1. **Define** middleware and name five jobs that belong there vs three that do not.
 2. **Trace** an Echo request: `Pre` → router → `Use` chain → handler → unwind, including why registration order matters.
 3. **Implement** a custom Echo middleware (`func(next echo.HandlerFunc) echo.HandlerFunc`) and register it with `e.Use`.
 4. **Build** an “inside the building” detector that uses `c.RealIP()` / private ranges **and** names the header-spoof traps.
@@ -190,7 +190,7 @@ func main() {
 	e.Use(ServerHeader)
 
 	e.GET("/", func(c *echo.Context) error {
-		return c.String(http.StatusOK, "hallway cleared")
+		return c.String(http.StatusOK, "ok")
 	})
 
 	if err := e.Start(":1323"); err != nil {
