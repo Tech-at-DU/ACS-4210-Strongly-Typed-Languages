@@ -472,7 +472,7 @@ Trap I can explain:
 <summary>For curriculum authors</summary>
 
 
-### Run-of-show (whole session)
+### In Class (whole session)
 
 | | |
 | --- | --- |
