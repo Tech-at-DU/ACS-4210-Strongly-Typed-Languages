@@ -55,7 +55,7 @@ _In this course, students discover the value of strongly typed languages in serv
 | `02` | 🆕 [Types & Static Languages](Lessons/Types.md)                 |
 | `03`  | **[Static Site Generators](Lessons/SSGProject.md)**                       |
 | `04`  | **[Files & Directories](Lessons/FilesDirectories.md)**                    |
-| `05`  | **[APIs, Middleware, and You](Lessons/middleware.md)** |
+| `05`  | **[APIs, Middleware, and You](Lessons/Lesson05.md)** |
 | `06`  | **[Scraping the Web](Lessons/WebScraping.md)** / **[Working With JSON](Lessons/JSON.md)** |
 | `07`  | **[Final Project Intro](Project/MakeUtility.md)** / **[Pointers](Lessons/Pointers.md)**                               |
 | `08`  | **[Concurrency & Goroutines](Lessons/Lesson07.md)**                       |
