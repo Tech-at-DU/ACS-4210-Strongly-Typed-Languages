@@ -1,5 +1,5 @@
 <!-- Run as a slideshow: reveal-md Lessons/WebScraping.md -w -->
-# Scraping the Web
+# Scraping the Web — Day 6
 
 ⭐️ **GOAL:** Leave able to tell scrape from crawl, extract fields with Colly `OnHTML` + goquery selectors, and marshal a struct slice to `output.json` with `encoding/json`.
 
@@ -19,7 +19,7 @@
 <!-- omit in toc -->
 ## 🏆 Objectives
 
-*By the end of this session, you'll be able to&hellip;*
+*By the end of this block, you'll be able to&hellip;*
 
 1. **Define** scrape vs crawl and name when HTML extraction is the wrong tool (use an API / JSON feed first).
 2. **Test** a CSS/goquery selector in DevTools before putting it in `OnHTML` — and say why a copied `nth-child` path is brittle.
@@ -121,7 +121,7 @@ Common selector shapes (goquery / CSS):
 | Descendant | `div.quote small.author` | Author inside a card |
 | Pseudo-class | `td:nth-of-type(1)` | First `td` in its parent |
 
-Live-demo (or paste a screenshot): Inspect a `.quote` → find `span.text` → search `div.quote span.text` in the panel. Contrast with a copied `body > div > ... > span:nth-child(1)` path. The long path breaks when the header ads a div.
+Live-demo (or paste a screenshot): Inspect a `.quote` → find `span.text` → search `div.quote span.text` in the panel. Contrast with a copied `body > div > ... > span:nth-child(1)` path. The long path breaks when the header adds a div.
 
 **Colly cannot see a shadow DOM or a client-rendered tree.** If View Source does not contain the string, `OnHTML` will not either. Headless browsers are a different tool — out of scope for this clock.
 
@@ -141,7 +141,7 @@ c := colly.NewCollector()
 go get github.com/gocolly/colly/v2@v2.3.0
 ```
 
-⚠️ **Toolchain gate (say once):** Colly **v2.3.0** needs **Go ≥ 1.24** (`go version`). Below that, either upgrade Go or pin an older `v2` tag that your toolchain accepts — ideas are identical; do not invent APIs. Prefer the pin above (not `@latest` on session day).
+⚠️ **Toolchain gate (say once):** Colly **v2.3.0** needs **Go ≥ 1.24** (`go version`). Below that, either upgrade Go or pin an older `v2` tag that your toolchain accepts — ideas are identical; do not invent APIs. Prefer the pin above (not `@latest` on the day you run this).
 
 `Collector` owns HTTP and runs the callbacks you attach. Official callback order ([Getting started](https://go-colly.org/docs/introduction/start/)):
 
@@ -199,7 +199,7 @@ Guards that belong in every review:
 
 ### 4. `encoding/json` — the ship format (~8m)
 
-Package: `"encoding/json"` ([pkg.go.dev](https://pkg.go.dev/encoding/json)). Go 1.27 also shipped `encoding/json/v2`; this session uses **v1** (`encoding/json`) — still supported, same APIs as the scraper project.
+Package: `"encoding/json"` ([pkg.go.dev](https://pkg.go.dev/encoding/json)). Go 1.27 also shipped `encoding/json/v2`; this block uses **v1** (`encoding/json`) — still supported, same APIs as the scraper project.
 
 ```go
 func Marshal(v any) ([]byte, error)
@@ -484,7 +484,7 @@ Tag I can explain:
 
 - Do not `Visit` every `a[href]` on the page (login, author, tag, next — you will wander).  
 - Do not switch on `Async` and append to `quotes` without a lock.  
-- Do not scrape a random production site from this session. Stay on quotes.toscrape.com.
+- Do not scrape a random production site from this block. Stay on quotes.toscrape.com.
 
 ### Stretch (pick one if MVP is green)
 
@@ -506,9 +506,9 @@ Tag I can explain:
 4. `NewCollector` **ignores** `robots.txt` until you set `IgnoreRobotsTxt = false`.  
 5. Exported fields + `json` tags + `MarshalIndent` / `Encode` → `output.json`; `Unmarshal` needs a pointer.
 
-**≤2m next after session:** Commit the lab. The course scraper project is the same pipeline on *your* site — worksheet selectors, struct, JSON, `output.json`.
+**≤2m next after this block:** Commit the lab. The course scraper project is the same pipeline on *your* site — worksheet selectors, struct, JSON, `output.json`.
 
-### After-session stretch (optional)
+### After-block stretch (optional)
 
 - Read Colly’s [Getting started](https://go-colly.org/docs/introduction/start/) callback list end-to-end.  
 - Skim [JSON and Go](https://go.dev/blog/json) (`Marshal` / `Unmarshal` / `Encoder`).  
@@ -529,6 +529,8 @@ Tag I can explain:
 
 <details>
 <summary>For curriculum authors</summary>
+
+## For curriculum authors
 
 ### In Class
 
@@ -560,10 +562,10 @@ Today's MVP (1 sentence):
 - Live-code the first five minutes of the skeleton only. Then get out of the way.
 - Activity 2 stretch (pager / Encoder / Limit) is the early-finisher extension — not a third activity.
 - `Lessons/JSON.md` and `Lessons/Lesson06.md` are pointers. Teach from this file only.
-- Do not play the old headless-browser video in this session.
+- Do not play the old headless-browser video in this block.
 
 ### Expert follow-ups
 
-- Optional after-session: Colly examples folder; JSON and Go blog through the encoder section; point the same pipeline at the course scraper project URL.
+- Optional after-block: Colly examples folder; JSON and Go blog through the encoder section; point the same pipeline at the course scraper project URL.
 
 </details>
