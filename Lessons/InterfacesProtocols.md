@@ -57,7 +57,7 @@ Whiteboard four protocol cards if chat stays quiet (read only; do not debate):
 | C | Prefer **small** interfaces. `io.Reader` is one method — on purpose. |
 | D | Put interfaces with the **consumer**. Constructors usually **return concrete structs**. |
 
-> **PROTIP:** Say it once out loud: interfaces ask “can you do this?” — not “what are you a subclass of?”
+> **📈 PROTIP:** Say it once out loud: interfaces ask “can you do this?” — not “what are you a subclass of?”
 
 <!-- > -->
 
@@ -78,7 +78,7 @@ That means:
 - One type can satisfy many interfaces without listing them.
 - You can invent a tiny interface **next to the code that needs it**, long after the concrete type was written.
 
-> **ASK AUDIENCE:** Does a Go type need an `implements` line to satisfy an interface?
+> **💬 ASK QUESTION:** Does a Go type need an `implements` line to satisfy an interface?
 
 <details>
 <summary>Answer</summary>
@@ -167,7 +167,7 @@ func main() {
 
 **Composition flash:** Stdlib composes small interfaces — `io.ReadWriter` embeds `Reader` and `Writer`. Prefer that over inventing `MyReadWriteCloser`.
 
-> **ASK AUDIENCE:** How many methods does `io.Reader` require?
+> **💬 ASK AUDIENCE:** How many methods does `io.Reader` require?
 
 <details>
 <summary>Answer</summary>
@@ -212,7 +212,7 @@ func main() {
 | `Counter` (`T`) | value-receiver methods on `T` | **No** if `Inc` is on `*T` |
 | `*Counter` (`*T`) | value-receiver **and** pointer-receiver methods | **Yes** |
 
-> **ASK AUDIENCE:** Will `var i Incrementer = c` compile when `Inc` has a pointer receiver?
+> **💬 QUICK CHECK:** Will `var i Incrementer = c` compile when `Inc` has a pointer receiver?
 
 <details>
 <summary>Answer</summary>
@@ -221,7 +221,7 @@ func main() {
 
 </details>
 
-> **BE AWARE:** Once a value is **inside** an interface, you do not get free “take address and call pointer method” sugar through the interface slot. Put the right concrete type (`*Counter`) in from the start.
+> **‼️ BE AWARE:** Once a value is **inside** an interface, you do not get free “take address and call pointer method” sugar through the interface slot. Put the right concrete type (`*Counter`) in from the start.
 
 ### 5. `any`, assertions, switches, nil flash (~5m)
 
@@ -322,7 +322,7 @@ Do **not**:
 
 **Exception:** returning an interface **is** OK when the concrete type is chosen at runtime (`hash.Hash`, `net.Conn`) or when the type *is* the protocol (`error`). Homework default: return `*T`.
 
-> **ASK AUDIENCE:** You only need `Write`. Do you take `io.Writer`, `io.WriteCloser`, or `*os.File` “just in case”?
+> **💬 YOUR TURN:** You only need `Write`. Do you take `io.Writer`, `io.WriteCloser`, or `*os.File` “just in case”?
 
 <details>
 <summary>Answer</summary>
@@ -352,7 +352,7 @@ Take **`io.Writer`**. Widen only when you actually need `Close` (then `io.WriteC
 
 ## [**20m**] 💻 Activity 1: Broken Store Satisfaction
 
-> **DONE WHEN:** You have listed (1) what the author did right, (2) at least two concrete mistakes, and (3) a fix path that deletes the fat producer interface and uses a tiny consumer-side protocol — then compared notes with a teammate or the room for 2 minutes.
+> **✅ DONE WHEN:** You have listed (1) what the author did right, (2) at least two concrete mistakes, and (3) a fix path that deletes the fat producer interface and uses a tiny consumer-side protocol — then compared notes with a teammate or the room for 2 minutes.
 
 Paste this artifact into your editor (do not roast the author):
 
@@ -417,17 +417,14 @@ type Getter interface {
 var _ Getter = (*Mem)(nil)
 ```
 
-> **PROTIP:** Before design lecture: does `return Mem{}` compile against `Store`? **No** — pointer-receiver methods are not in `Mem`'s method set.
-
-> **BE AWARE:** “Fixed” by making every method a value receiver often creates a broken map-copy story. Prefer consistent `*Mem` + `NewMem() *Mem`.
-
+> **📈 TIP:** Before design lecture: does `return Mem{}` compile against `Store`? **No** — pointer-receiver methods are not in `Mem`'s method set.
 > **FINISHED EARLY?** Rewrite `NewStore` into `NewMem() *Mem` and list the **minimum** interface a billing package would need if it only calls `Get` / `Set`.
 
 <!-- > -->
 
 ## [**30m**] 💻 Activity 2: Build logpipe on io.Writer
 
-> **DONE WHEN:** (1) `PipeTo(w io.Writer, msg string) error` exists and compiles, (2) you call it with **both** `os.Stdout` and a `bytes.Buffer` (or equivalent), (3) `go test` passes with `bytes.Buffer` or a `fakeWriter`, (4) you did **not** invent a god-interface, (5) you can say in one sentence why `io.Writer` instead of `*os.File`.
+> **✅ DONE:** (1) `PipeTo(w io.Writer, msg string) error` exists and compiles, (2) you call it with **both** `os.Stdout` and a `bytes.Buffer` (or equivalent), (3) `go test` passes with `bytes.Buffer` or a `fakeWriter`, (4) you did **not** invent a god-interface, (5) you can say in one sentence why `io.Writer` instead of `*os.File`.
 
 1. `mkdir -p ~/logpipe && cd ~/logpipe` (or `/tmp/logpipe`).
 2. `go mod init example.com/logpipe`
@@ -495,10 +492,8 @@ func (u UpperWriter) Write(p []byte) (int, error) {
 2. Method-set predict/confirm: tiny `Counter` / `Incrementer`; paste prediction **before** `go run`.
 3. Short `Describe(v any) string` with a type switch.
 
-> **PROTIP:** Gradescope or take-home follow-ups are fine after session — today’s gate is `PipeTo` + test + the one-sentence why.
 
-> **BE AWARE:** Do not “fix for flexibility” with a six-method logger interface. Earn the second implementation first.
-
+> **‼️ TRAP:** Do not “fix for flexibility” with a six-method logger interface. Earn the second implementation first.
 > **FINISHED EARLY?** Trade `UpperWriter` outputs with a teammate: predict, then run.
 
 <!-- > -->
@@ -561,7 +556,6 @@ After session: finish any unfinished `logpipe` core. Skim Effective Go + Code Re
 ### Expert Follow-Ups
 
 - Optional after-session: interface values + escape analysis curiosity (do not derail).
-- If a Gradescope interfaces drill exists for your section, confirm the queue is open before Wrap.
 - Cross-link SSG / docs deploy tracks that already write bytes — `io.Writer` is how that stays testable.
 
 </details>
