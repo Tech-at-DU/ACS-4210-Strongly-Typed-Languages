@@ -184,7 +184,7 @@ Keys fall back to the exported field names (`Page`, `Fruits`) — not the lowerc
 > **✅ DONE WHEN:** A `go run .` program prints marshaled bool, int, float, string, one slice, and one map — each on its own line — and every `Marshal` call checks `err`.
 
 1. Create a scratch module (`go mod init json-day6` or a throwaway folder with `main.go`).
-1. Port the basic-types example. Replace `_` with real `err` checks.
+1. Paste the basic-types example. Replace `_` with real `err` checks.
 1. Add the slice + map examples. Run. Compare to your predictions.
 1. Change one map value and re-run. Confirm the JSON text changed.
 
