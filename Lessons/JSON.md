@@ -1,129 +1,248 @@
-# 📜 Day 6: Working with JSON
+<!-- Run as a slideshow: reveal-md Lessons/JSON.md -w -->
+# Working with JSON — Day 6
 
-### ⏱ Lesson Plan
+⭐️ **GOAL:** Leave able to marshal Go values to JSON (and read them back), customize struct field names with tags, and write scrape results to a file as JSON.
 
-- [[**20m**] 💬 Review Web Scraper Worksheet](#20m--review-web-scraper-worksheet)
-- [[**05m**] 🏆 Objectives](#05m--objectives)
-- [[**30m**] 📖 Overview: Serialization](#30m--overview-serialization)
-  - [What is Serialization?](#what-is-serialization)
-  - [An Analogy](#an-analogy)
-  - [New Packages](#new-packages)
-  - [Basic Data Types](#basic-data-types)
-  - [Slices & Maps](#slices--maps)
-  - [Structs](#structs)
-- [[**15m**] 🌴 Break](#15m--break)
-- [[**50m**] 🧪 Lab Time / Q + A](#50m--lab-time--q--a)
-- [📚 Resources & Credits](#-resources--credits)
+<!-- omit in toc -->
+## ⏱ Agenda
 
-## [**20m**] 💬 Review Web Scraper Worksheet
+- [[**15m**] ☀️ Warm Up](#15m-️-warm-up)
+- [[**35m**] 📚 TT: Serialization and encoding/json](#35m--tt-serialization-and-encodingjson)
+- [[**10m**] 🌴 Break](#10m--break)
+- [[**25m**] 💻 Activity 1: Marshal Basics Slices and Maps](#25m--activity-1-marshal-basics-slices-and-maps)
+- [[**30m**] 💻 Activity 2: Struct Tags and Write a JSON File](#30m--activity-2-struct-tags-and-write-a-json-file)
+- [[**5m**] Wrap Up](#5m-wrap-up)
 
-Break into groups of 4 and get feedback on your worksheets.
+<!-- > -->
 
-## [**05m**] 🏆 Objectives
+<!-- omit in toc -->
+## 🏆 Objectives
 
-1. Encode and decode `struct`s into JSON.
+*By the end of this session, you'll be able to&hellip;*
 
-## [**30m**] 📖 Overview: Serialization
+1. Explain serialization in plain language (store or transmit, then reconstruct)
+1. Marshal bools, numbers, strings, slices, and maps with `encoding/json`
+1. Encode a struct with `json` tags and write the bytes to a file with `os`
 
-In our Web Scraper project, one of the requirements is to encode the `struct` that stores our data into JSON, then save it to a file.
+<!-- > -->
 
-We already know how to save to a file using functions found in the `os` package. We'll learn how to do the rest today!
+## [**15m**] ☀️ Warm Up
 
-### What is Serialization?
+In the web scraper project, one requirement is to encode the struct that stores scraped data into JSON, then save it to a file.
 
-According to [Wikipedia](https://en.wikipedia.org/wiki/Serialization):
+You already know how to write files with the `os` package. Today is the encode half — and how tags control the JSON keys.
 
-> The process of **translating data structures or object state into a format that can be stored** (for example, in a file or memory buffer) **or transmitted** (for example, across a network connection link) and **reconstructed later** (possibly in a different computer environment).
+**Warm-up prompt:** In one sentence, what problem does JSON solve between a Go struct in memory and a `.json` file on disk?
 
-We will have to _serialize_ our `struct` into JSON format in order to store our web scraping results.
+> **📈 TIP:** JSON is text. If you can print the marshaled string and it looks right, you are halfway to a durable scrape export.
 
-### An Analogy
+<!-- > -->
 
-**SCENARIO**: You've got an idea and you want to describe it to your friend. Unfortunately, you're at home. Your friend is somewhere else. You decide to write an email, describing your idea, and send it to your friend.
+## [**35m**] 📚 TT: Serialization and encoding/json
 
----
+### 1. What Serialization Is (~6m)
 
-See what happened here? *Real life is just like coding!*
+From [Wikipedia — Serialization](https://en.wikipedia.org/wiki/Serialization): translating data structures or object state into a format that can be **stored** or **transmitted**, then **reconstructed later** (maybe on another machine).
 
-**You serialized the stuff in your head into an email**, something that can be **transmitted, stored, rendered and finally read** by your friend.
+We serialize our scrape struct into JSON so the results outlive the process.
 
-When **your friend reads your email**, they in turn **de-serialize the message content** in order to understand your idea in their own minds!
+> **💬 ASK QUESTION:** Is writing a struct with `fmt.Fprintf` “serialization”? Why or why not?
 
-### New Packages
+<details>
+<summary>Answer</summary>
 
-We'll need to `import` the `"encoding/json"` package in order to get started.
+**Weak / incomplete.** `fmt` prints a Go-facing dump, not a portable agreed format. JSON (or another codec) gives a format other tools and languages can read back.
 
-### Basic Data Types
+</details>
 
-First, let's look at what happens when we marshal basic data types into JSON:
+### 2. A Short Analogy (~4m)
 
-```golang
+You have an idea at home. Your teammate is elsewhere. You write an email and send it.
+
+You **serialized** the idea into a message that can be transmitted and stored. When they read it, they **deserialize** it into their own understanding.
+
+Same job for a scrape struct → JSON bytes → file or HTTP body → someone else’s `Unmarshal`.
+
+### 3. Package (~2m)
+
+```go
+import "encoding/json"
+```
+
+Primary calls today: `json.Marshal` / `json.Unmarshal` (and later `Encoder` / `Decoder` for streams).
+
+> **‼️ WATCH OUT:** Ignoring the error from `Marshal` (`val, _ := json.Marshal(...)`) hides failures. Check `err` before you trust the bytes.
+
+### 4. Basic Data Types (~7m)
+
+```go
 package main
 
 import (
-    "encoding/json"
-    "fmt"
+  "encoding/json"
+  "fmt"
 )
 
 func main() {
-            aBoolValue, _ := json.Marshal(true)
-            fmt.Println(string(aBoolValue))
+  aBoolValue, err := json.Marshal(true)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(string(aBoolValue))
 
-            anIntValue, _ := json.Marshal(1)
-            fmt.Println(string(anIntValue))
+  anIntValue, err := json.Marshal(1)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(string(anIntValue))
 
-            aFloatValue, _ := json.Marshal(2.34)
-            fmt.Println(string(aFloatValue))
+  aFloatValue, err := json.Marshal(2.34)
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(string(aFloatValue))
 
-            aStringValue, _ := json.Marshal("ACS 4210")
-            fmt.Println(string(aStringValue))
+  aStringValue, err := json.Marshal("ACS-4210")
+  if err != nil {
+    panic(err)
+  }
+  fmt.Println(string(aStringValue))
 }
 ```
 
-What do you think the output will be for each `Println` statement? Write down your answers.
+Predict each `Println` before you run.
 
-### Slices & Maps
+> **💬 QUICK CHECK:** What does `json.Marshal("hello")` print — with or without quotes in the output string?
 
-```golang
-        fruitSlice := []string{"apple", "peach", "pear"}
-        fruitJSON, _ := json.Marshal(fruitSlice)
-        fmt.Println(string(fruitJSON))
+<details>
+<summary>Answer</summary>
 
-        totalFruitsMap := map[string]int{"apple": 5, "lettuce": 7}
-        totalFruitsJSON, _ := json.Marshal(totalFruitsMap)
-        fmt.Println(string(totalFruitsJSON))
+JSON strings are quoted. You should see `"hello"` including the quote characters inside the printed text.
+
+</details>
+
+### 5. Slices and Maps (~7m)
+
+```go
+fruitSlice := []string{"apple", "peach", "pear"}
+fruitJSON, err := json.Marshal(fruitSlice)
+if err != nil {
+  panic(err)
+}
+fmt.Println(string(fruitJSON))
+
+totalFruitsMap := map[string]int{"apple": 5, "lettuce": 7}
+totalFruitsJSON, err := json.Marshal(totalFruitsMap)
+if err != nil {
+  panic(err)
+}
+fmt.Println(string(totalFruitsJSON))
 ```
 
-What do you think the output will be for each `Println` statement? Write down your answers.
+Predict outputs. Note: map key order in printed JSON is not something to depend on for tests.
 
-### Structs
+### 6. Structs and Tags (~9m)
 
-Use tags on struct field declarations to customize the encoded key names output in your JSON. Here's an example:
+Use tags on struct fields to customize encoded key names:
 
-```golang
+```go
 type FruitList struct {
-        Page   int      `json:"page"`
-        Fruits []string `json:"fruits"`
+  Page   int      `json:"page"`
+  Fruits []string `json:"fruits"`
 }
 
 fruitList := &FruitList{
   Page:   1,
-  Fruits: []string{"apple", "peach", "pear"}}
-fruitJSON, _ := json.Marshal(fruitList)
+  Fruits: []string{"apple", "peach", "pear"},
+}
+fruitJSON, err := json.Marshal(fruitList)
+if err != nil {
+  panic(err)
+}
 fmt.Println(string(fruitJSON))
 ```
 
-What do you think will be output in this case? Write down your answer.
-What do you think will change if the `json:` struct field declaration were to be removed?
+> **💬 YOUR TURN:** What changes if you remove the `` `json:"page"` `` / `` `json:"fruits"` `` tags?
 
-## [**15m**] 🌴 Break
+<details>
+<summary>Answer</summary>
 
-## [**50m**] 🧪 Lab Time / Q + A
+Keys fall back to the exported field names (`Page`, `Fruits`) — not the lowercase JSON style most APIs expect.
 
-- *SSG v1.1 & 1.2*
-- *Web Scraper Project*
+</details>
 
-## 📚 Resources & Credits
+> **📈 DO THIS:** Prefer lowercase JSON keys via tags for anything a browser, Python script, or scrape consumer will read.
 
-- [**GoByExample**: JSON](https://gobyexample.com/json)
-- [**Quora**: Why do we serialize data?](https://quora.com/Why-do-we-serialize-data)
+<!-- > -->
+
+## [**10m**] 🌴 Break
+
+<!-- > -->
+
+## [**25m**] 💻 Activity 1: Marshal Basics Slices and Maps
+
+> **✅ DONE WHEN:** A `go run .` program prints marshaled bool, int, float, string, one slice, and one map — each on its own line — and every `Marshal` call checks `err`.
+
+1. Create a scratch module (`go mod init json-day6` or a throwaway folder with `main.go`).
+1. Port the basic-types example. Replace `_` with real `err` checks.
+1. Add the slice + map examples. Run. Compare to your predictions.
+1. Change one map value and re-run. Confirm the JSON text changed.
+
+> **📈 SHORTCUT:** `string(bytes)` is the fast way to eyeball marshaled output in the terminal.
+> **FINISHED EARLY?** `json.Unmarshal` the slice JSON back into a `[]string` and print `len`.
+
+<!-- > -->
+
+## [**30m**] 💻 Activity 2: Struct Tags and Write a JSON File
+
+> **✅ SHIP WHEN:** You have a tagged struct, `json.Marshal` succeeds, and `os.WriteFile` (or create/write) saves pretty or compact JSON to disk; you can open the file and see your keys.
+
+1. Define a scrape-shaped struct (name it for your project — e.g. page title, URL, items slice).
+1. Add `json:"..."` tags for every exported field you want in the file.
+1. Marshal to `[]byte`. Write to `out.json` with `0644` (or your team’s usual perms).
+1. Open the file. Confirm keys match tags, not Go field names.
+
+> **‼️ CAUTION:** `Marshal` does not indent. For a readable file use `json.MarshalIndent(v, "", "  ")` when you want humans to skim it.
+> **FINISHED EARLY?** Round-trip: read the file, `Unmarshal` into a fresh struct, print one field.
+
+<!-- > -->
+
+## [**5m**] Wrap Up
+
+1. Serialization = store or send, then rebuild later.
+1. `encoding/json` marshals Go values; tags control keys.
+1. Check `err`. Write bytes to disk for the scraper export path.
+
+<!-- > -->
+
+## Additional Resources
+
+1. **[Go by Example — JSON](https://gobyexample.com/json)** — marshal / unmarshal patterns.
+1. **[encoding/json package docs](https://pkg.go.dev/encoding/json)** — `Marshal`, tags, `Encoder`.
+1. **[Wikipedia — Serialization](https://en.wikipedia.org/wiki/Serialization)** — definition used in TT.
+
+<details>
+<summary>For Curriculum Authors</summary>
+
+## For Curriculum Authors
+
+### In Class
+
+| | |
+| --- | --- |
+| **Next action** | Open this file → Warm Up → TT §1. |
+| **Done when** | Room has marshaled a tagged struct to a file at least once. |
+
+- Continuity: web scraper export requirement; SSG lab time from the old plan can sit in Activity 2 FINISHED EARLY or next session.
+- Old lesson had a 20m group worksheet review and a 50m open lab — replaced with two titled Activities so the encode path has a clear done-state.
+
+### Facilitator Notes
+
+- Keep TT examples runnable; prefer `err` checks over `_`.
+- Solo-capable Activities; no required breakouts.
+
+### Expert Follow-Ups
+
+- Optional later: streaming `json.Encoder` for large scrapes; `omitempty` tags.
+
+</details>
