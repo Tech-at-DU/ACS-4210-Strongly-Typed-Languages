@@ -64,7 +64,7 @@ Whiteboard four protocol cards if chat stays quiet (read only; do not debate):
 ## [**35m**] 📚 TT: Overview
 
 **Next action:** Protocols → live `Greeter` → `io` → method-set trap → `any` / asserts → accept-interfaces / return-structs → when **not** to interface.  
-**Done when:** You can restate implicit satisfaction, the pointer trap, why `io.Writer` beats `*os.File` in APIs, and one reason to skip inventing an interface.
+**Done when:** You can restate implicit satisfaction, the pointer trap, why `io.Writer` is safer than `*os.File` in APIs, and one reason to skip inventing an interface.
 
 ### 1. Protocols, not inheritance (~5m)
 
