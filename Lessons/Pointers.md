@@ -16,7 +16,7 @@
       1. [Declaring and Initializing Pointers](#declaring-and-initializing-pointers)
       1. [Rewriting the Warmup Using Pointers](#rewriting-the-warmup-using-pointers)
 1. [[**10m**] 🌴 **BREAK**](#%5B%2a%2a10m%2a%2a%5D-%F0%9F%8C%B4-%2a%2abreak%2a%2a)
-1. [[**30m**] 💻 **Activity**: Pointer Drills](#%5B%2a%2a30m%2a%2a%5D-%F0%9F%92%BB-%2a%2aactivity%2a%2a%3A-pointer-drills)
+1. [[**45m**] 💻 **Activity 1: Pointer Drills**](#45m--activity-1-pointer-drills)
 <!-- > -->
 
 <!-- omit in toc -->
@@ -144,9 +144,16 @@ func main() {
 
 ## [**10m**] 🌴 **BREAK**
 
-## [**45m**] 💻 **Activity**: Pointer Drills
+<a id="45m--activity-1-pointer-drills"></a>
 
-Visit Gradescope and begin working on `Drill 3: Pointers`.
+## [**45m**] 💻 **Activity 1: Pointer Drills**
+
+Run the pointer drills in-repo (in-repo only). Pair on the first pass; solo the second.
+
+> **✅ DONE WHEN:**
+>
+> 1. You can draw a variable, its address, and what a pointer holds for one example from TT
+> 2. You can explain one bug you hit (nil, wrong dereference, or unexpected mutation) and how you unblocked
 
 <!-- > -->
 
