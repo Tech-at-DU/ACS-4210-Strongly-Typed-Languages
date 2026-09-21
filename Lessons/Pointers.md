@@ -144,6 +144,8 @@ func main() {
 
 ## [**10m**] 🌴 **BREAK**
 
+<a id="45m--activity-1-pointer-drills"></a>
+
 ## [**45m**] 💻 **Activity 1: Pointer Drills**
 
 Run the pointer drills in-repo (no Gradescope). Pair on the first pass; solo the second.
