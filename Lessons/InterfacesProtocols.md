@@ -31,7 +31,7 @@
 
 ## [**5m**] Attendance &amp; Announcements
 
-Today is **protocols over inheritance**. Hire-bar Go asks “can you do this?” — not “what family tree are you on?”
+Today is **protocols over inheritance**. On-the-job Go asks “can you do this?” — not “what family tree are you on?”
 
 If you already saw geometry `Shape` elsewhere in the course, treat that as **syntax you know** — not the default design story for production APIs. Depth for interfaces lives **here**.
 
@@ -64,7 +64,7 @@ Whiteboard four protocol cards if chat stays quiet (read only; do not debate):
 ## [**35m**] 📚 TT: Overview
 
 **Next action:** Protocols → live `Greeter` → `io` → method-set trap → `any` / asserts → accept-interfaces / return-structs → when **not** to interface.  
-**Done when:** You can restate implicit satisfaction, the pointer trap, why `io.Writer` is safer than `*os.File` in APIs, and one reason to skip inventing an interface.
+> **✅ DONE WHEN:** You can restate implicit satisfaction, the pointer trap, why `io.Writer` is safer than `*os.File` in APIs, and one reason to skip inventing an interface.
 
 ### 1. Protocols, not inheritance (~5m)
 
@@ -163,7 +163,7 @@ func main() {
 
 **Narrate:** `*strings.Reader` and `*os.File` never “implement Writer/Reader” in source — they just have `Read` / `Write`. `io.Copy` only asks for the protocol.
 
-**SSG / hire-bar bridge:** If your function takes `*os.File`, tests need a real file. If it takes `io.Writer`, tests can use `bytes.Buffer` or a three-line fake.
+**SSG / API-test bridge:** If your function takes `*os.File`, tests need a real file. If it takes `io.Writer`, tests can use `bytes.Buffer` or a three-line fake.
 
 **Composition flash:** Stdlib composes small interfaces — `io.ReadWriter` embeds `Reader` and `Writer`. Prefer that over inventing `MyReadWriteCloser`.
 
@@ -263,7 +263,7 @@ func main() {
 
 ### 6. Accept interfaces, return structs; fakes; when NOT (~7m)
 
-Hire-bar paraphrase of [Code Review Comments — Interfaces](https://go.dev/wiki/CodeReviewComments#interfaces): put interfaces with the consumer; return concrete types from constructors.
+Paraphrase of [Code Review Comments — Interfaces](https://go.dev/wiki/CodeReviewComments#interfaces): put interfaces with the consumer; return concrete types from constructors.
 
 - **Parameters:** ask for the **smallest** protocol you need (`io.Writer`, not `*os.File`).
 - **Returns / constructors:** return **concrete** types (`*Mem`, `*Server`).
@@ -318,9 +318,9 @@ Do **not**:
 - Return interfaces from constructors “for testability” when `*T` + consumer-side interface would do
 - Grow a fat interface so every fake implements methods you never call
 - Replace a fine concrete helper with `any` + type switches
-- Port Java DAO / interface-everything into Go homework
+- Port Java DAO / interface-everything into a Go take-home exercise
 
-**Exception:** returning an interface **is** OK when the concrete type is chosen at runtime (`hash.Hash`, `net.Conn`) or when the type *is* the protocol (`error`). Homework default: return `*T`.
+**Exception:** returning an interface **is** OK when the concrete type is chosen at runtime (`hash.Hash`, `net.Conn`) or when the type *is* the protocol (`error`). Default: return `*T`.
 
 > **ASK AUDIENCE:** You only need `Write`. Do you take `io.Writer`, `io.WriteCloser`, or `*os.File` “just in case”?
 
@@ -352,7 +352,7 @@ Take **`io.Writer`**. Widen only when you actually need `Close` (then `io.WriteC
 
 ## [**20m**] 💻 Activity 1: Broken Store Satisfaction
 
-> **DONE WHEN:** You have listed (1) what the author did right, (2) at least two concrete mistakes, and (3) a fix path that deletes the fat producer interface and uses a tiny consumer-side protocol — then compared notes with a teammate or the room for 2 minutes.
+> **✅ DONE WHEN:** You have listed (1) what the author did right, (2) at least two concrete mistakes, and (3) a fix path that deletes the fat producer interface and uses a tiny consumer-side protocol — then compared notes with a teammate or the room for 2 minutes.
 
 Paste this artifact into your editor (do not roast the author):
 
@@ -427,7 +427,7 @@ var _ Getter = (*Mem)(nil)
 
 ## [**30m**] 💻 Activity 2: Build logpipe on io.Writer
 
-> **DONE WHEN:** (1) `PipeTo(w io.Writer, msg string) error` exists and compiles, (2) you call it with **both** `os.Stdout` and a `bytes.Buffer` (or equivalent), (3) `go test` passes with `bytes.Buffer` or a `fakeWriter`, (4) you did **not** invent a god-interface, (5) you can say in one sentence why `io.Writer` instead of `*os.File`.
+> **✅ DONE WHEN:** (1) `PipeTo(w io.Writer, msg string) error` exists and compiles, (2) you call it with **both** `os.Stdout` and a `bytes.Buffer` (or equivalent), (3) `go test` passes with `bytes.Buffer` or a `fakeWriter`, (4) you did **not** invent a god-interface, (5) you can say in one sentence why `io.Writer` instead of `*os.File`.
 
 1. `mkdir -p ~/logpipe && cd ~/logpipe` (or `/tmp/logpipe`).
 2. `go mod init example.com/logpipe`
@@ -532,11 +532,11 @@ After session: finish any unfinished `logpipe` core. Skim Effective Go + Code Re
 4. **[pkg.go.dev/io](https://pkg.go.dev/io)** — `Reader`, `Writer`, `Copy`, composition helpers.
 5. **[builtin — any](https://pkg.go.dev/builtin#any)** — `any` as alias for `interface{}` (Go 1.18+).
 6. **[When To Use Generics](https://go.dev/blog/when-generics)** — optional; behavioral interfaces vs type parameters.
-7. **[Types.md](Types.md)** — survey mention of interfaces; hire-bar depth is this lesson.
+7. **[Types.md](Types.md)** — survey mention of interfaces; full depth is this lesson.
 8. **[07-Fullstack.md](07-Fullstack.md)** — geometry `Shape` as prior-knowledge reframe only.
 
 <details>
-<summary>For curriculum authors</summary>
+<summary>For Curriculum Authors</summary>
 
 ### In Class
 
