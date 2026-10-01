@@ -58,8 +58,8 @@ _In this course, students discover the value of strongly typed languages in serv
 | `05`  | **[APIs, Middleware, and You](Lessons/middleware.md)** |
 | `06`  | **[Scraping the Web](Lessons/WebScraping.md)** / **[Working With JSON](Lessons/JSON.md)** |
 | `07`  | **[Final Project Intro](Project/MakeUtility.md)** / **[Pointers](Lessons/Pointers.md)**                               |
-| `08`  | **[Concurrency & Goroutines](Lessons/Lesson07.md)**                       |
-| `09`  | **[Benchmarking & Testing](Lessons/Lesson09.md)**                         |
+| `08`  | **[Concurrency & Goroutines](Lessons/Concurrency.md)**                    |
+| `09`  | **[Benchmarking & Testing](Lessons/Benchmarking.md)**                     |
 | `10`  | **[Documentation & Deployments](Lessons/DocsDeploy.md)**                  |
 | `11`  | [**Final Presentations**](Project/MakeUtility.md)                         |
 
