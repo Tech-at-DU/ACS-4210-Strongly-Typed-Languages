@@ -1,4 +1,4 @@
-<!-- Run as a slideshow: reveal-md Lessons/Lesson1.md -w -->
+<!-- Run as a slideshow: reveal-md Lessons/middleware.md -w -->
 # APIs, Middleware, and You
 
 ⭐️ **GOAL:** Leave able to explain why middleware exists, trace an Echo request through the onion, and ship a custom `e.Use` middleware that labels “inside the building?” without trusting spoofable headers.
