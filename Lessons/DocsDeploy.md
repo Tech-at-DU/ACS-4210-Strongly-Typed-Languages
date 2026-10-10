@@ -1,4 +1,4 @@
-# 📜 Day 12: Documentation & Deployments
+# 📜 Day 10: Documentation & Deployments
 
 ### 🔖 Table of Contents
 
@@ -50,49 +50,27 @@
 
 ### Why Practice This
 
-When you are preparing to publish a package, you should make sure that the documentation looks correct by running a local copy of godoc. Let's try it now!
+When you are preparing to publish a package, you should make sure that the documentation looks correct by previewing it locally. Let's try it now!
 
 ### Step By Step
 
-1. Double-check to ensure your environment is properly configured. In a standard environment, the following bash variables should be exported at the bottom of your `.bashrc` or `.zshrc` file:
-
-```bash
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-mkdir -p $GOPATH $GOPATH/src $GOPATH/pkg $GOPATH/bin
-go install golang.org/x/tools/cmd/godoc@latest
-godoc -http=localhost:6060
-```
-
-
-2. Install `godoc`:
+1. From your project's root (the folder with `go.mod`), run:
 
      ```bash
-     go get golang.org/x/tools/cmd/godoc
-     ```
-     
-3. Open your terminal and change directory to `~/go/src/yourproject`. Run the following code:
-
-     ```bash
-     
-     godoc -http :8080
+     go run golang.org/x/pkgsite/cmd/pkgsite@latest
      ```
 
-4. Visit http://localhost:8080/pkg in your browser. Search for the name of your package, and click the link to access your generated GoDocs.
+     `pkgsite` is the local version of [pkg.go.dev](https://pkg.go.dev) and replaces the old `godoc` server.
 
-    **Example**: In my [Gopherology](https://github.com/droxey/gopherology) project, the generated documentation for the public utils package can be found at http://localhost:8080/pkg/github.com/droxey/gopherology/utils.
+2. Visit http://localhost:8080 in your browser and open your module path to see your generated docs.
+
+    **Example**: In my [Gopherology](https://github.com/droxey/gopherology) project, the docs for the public utils package are at http://localhost:8080/github.com/droxey/gopherology/utils.
 
 ### Discussion Questions
 
 Once you've completed the activity, prepare to discuss answers to the following questions:
 
    - What task did running this command accomplish?
-   - An ampersand (`&`) appears at the end of the command we ran.
-       - What does including the `&` do?
-       - What happens if you remove it?
    - Did anything change in the filesystem when we ran Godoc?
    - How does Godoc know what comments to use when generating documentation?
 
@@ -334,7 +312,7 @@ OPTIONS:
 
 - Add a checkmark next to the documentation requirement in your repo's `rubric.md`.
 - Commit the documentation you generated before leaving today and the update to your progress.
-- Review the [syllabus](https://make.sc/bew2.5) and ensure you are on track to meet all requirements and expectations by the end of the course.
+- Review the [syllabus](../README.md) and ensure you are on track to meet all requirements and expectations by the end of the course.
     - _Are you on track to complete 10+ commits in your MakeUtility project?_
     - _Miss a day from class? Review the lesson plan! Did you turn in all participation-based challenges listed in the syllabus?_
 
@@ -347,7 +325,7 @@ OPTIONS:
 
 ### Documentation
 
-- [**Documentation**: Command godoc](https://godoc.org/golang.org/x/tools/cmd/godoc)
+- [**Documentation**: Command pkgsite](https://pkg.go.dev/golang.org/x/pkgsite/cmd/pkgsite)
 - [**Godoc**: Documenting Go Code (Blog Post)](https://blog.golang.org/godoc-documenting-go-code)
 
 ### Deployment
