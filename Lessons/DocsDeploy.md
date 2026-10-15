@@ -1,4 +1,4 @@
-# 📜 Day 12: Documentation & Deployments
+# 📜 Day 10: Documentation & Deployments
 
 ### 🔖 Table of Contents
 
@@ -19,22 +19,16 @@
    6. [Step 6: Scale](#step-6-scale)
    7. [Step 7: Test](#step-7-test)
    8. [Step 8: 🎉 Profit](#step-8--profit)
-7. [[**15m**] 📖 Guide: Deploying on Homebrew (CLIs)](#15m--guide-deploying-on-homebrew-clis)
-   1. [Step 1: Installation & Setup](#step-1-installation--setup)
-   2. [Step 2: Initialize](#step-2-initialize)
-   3. [Step 3: Build & Upload](#step-3-build--upload)
-8. [[**20m**] 💻 Activity: Deploy a Thing!](#20m--activity-deploy-a-thing)
-9. [[**05m**] 🌃 Wrap Up / After Class](#05m--wrap-up--after-class)
-10. [📚 Resources & Credits](#-resources--credits)
+7. [[**20m**] 💻 Activity: Deploy a Thing!](#20m--activity-deploy-a-thing)
+8. [[**05m**] 🌃 Wrap Up / After Class](#05m--wrap-up--after-class)
+9. [📚 Resources & Credits](#-resources--credits)
    1. [Package Publishing](#package-publishing)
    2. [Documentation](#documentation)
-   3. [Deployment](#deployment)
 
 ## [**05m**] 🏆 Objectives
 
 1. Practice and generate standards-based package documentation using Godoc.
 2. Configure and release web applications, APIs, and bots written in Go on Heroku.
-3. Set up and use Homebrew to release CLIs written in Go.
 
 ## [**10m**] 🌤 Warm Up: Comment All the Things
 
@@ -50,49 +44,27 @@
 
 ### Why Practice This
 
-When you are preparing to publish a package, you should make sure that the documentation looks correct by running a local copy of godoc. Let's try it now!
+When you are preparing to publish a package, you should make sure that the documentation looks correct by previewing it locally. Let's try it now!
 
 ### Step By Step
 
-1. Double-check to ensure your environment is properly configured. In a standard environment, the following bash variables should be exported at the bottom of your `.bashrc` or `.zshrc` file:
-
-```bash
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-mkdir -p $GOPATH $GOPATH/src $GOPATH/pkg $GOPATH/bin
-go install golang.org/x/tools/cmd/godoc@latest
-godoc -http=localhost:6060
-```
-
-
-2. Install `godoc`:
+1. From your project's root (the folder with `go.mod`), run:
 
      ```bash
-     go get golang.org/x/tools/cmd/godoc
-     ```
-     
-3. Open your terminal and change directory to `~/go/src/yourproject`. Run the following code:
-
-     ```bash
-     
-     godoc -http :8080
+     go run golang.org/x/pkgsite/cmd/pkgsite@latest
      ```
 
-4. Visit http://localhost:8080/pkg in your browser. Search for the name of your package, and click the link to access your generated GoDocs.
+     `pkgsite` is the local version of [pkg.go.dev](https://pkg.go.dev) and replaces the old `godoc` server.
 
-    **Example**: In my [Gopherology](https://github.com/droxey/gopherology) project, the generated documentation for the public utils package can be found at http://localhost:8080/pkg/github.com/droxey/gopherology/utils.
+2. Visit http://localhost:8080 in your browser and open your module path to see your generated docs.
+
+    **Example**: In my [Gopherology](https://github.com/droxey/gopherology) project, the docs for the public utils package are at http://localhost:8080/github.com/droxey/gopherology/utils.
 
 ### Discussion Questions
 
 Once you've completed the activity, prepare to discuss answers to the following questions:
 
    - What task did running this command accomplish?
-   - An ampersand (`&`) appears at the end of the command we ran.
-       - What does including the `&` do?
-       - What happens if you remove it?
    - Did anything change in the filesystem when we ran Godoc?
    - How does Godoc know what comments to use when generating documentation?
 
@@ -232,101 +204,9 @@ You've successfully released your website, bot, or API to Heroku!
 
 Visit [Heroku: Getting Started With Go](https://devcenter.heroku.com/articles/getting-started-with-go?singlepage=true) to dive deep on each step of the deployment outlined above.
 
-## [**15m**] 📖 Guide: Deploying on Homebrew (CLIs)
-
-Let's get to know another helpful deployment tool,  [Formula Go](https://jkawamoto.github.io/fgo/). Formula Go helps you to build and upload your software written in Go; and then prepares [Homebrew](http://brew.sh/) and [Linuxbrew](http://linuxbrew.sh/) formulae for it.
-
-Formula Go assumes your software is hosted in GitHub, and its compiled binaries are published in GitHub’s release page.
-
-### Step 1: Installation & Setup
-
-Formula Go can be installed via Homebrew or Linuxbrew.
-
-**1a**. Install `fgo` and it's dependencies using the commands below:
-
-```bash
-go get github.com/laher/goxc
-export GOROOT_BOOTSTRAP=/usr/local/go;
-goxc -t -bc=linux,darwin
-
-brew install ghr
-
-brew tap jkawamoto/fgo
-brew install fgo
-```
-
-**1b**. Create a [new Personal API Token on GitHub](https://github.com/settings/tokens/new) with the following scopes checked:
-
-<img src="https://raw.githubusercontent.com/Tech-at-DU/ACS-4210-Strongly-Typed-Languages/master/Lessons/img/new-token.png" width="600">
-
-**1c**. Copy the new token to your clipboard.
-
-**1d**. Run the below command to configure your local `git` repository to store the token in your `git` settings:
-
-```bash
-git config github.token "PASTE_GITHUB_API_TOKEN_HERE"
-```
-
-### Step 2: Initialize
-
-In the root of your repository, run this command to create a `homebrew` directory and generate a Homebrew formula template.
-
-```bash
-fgo init –desc="A short description of what your application does."
-```
-
-`fgo init` will check your `git` configuration to obtain information about your GitHub user name and repository name, which are required when releasing your application on Homebrew.
-
-### Step 3: Build & Upload
-
-```bash
-export GOROOT_BOOTSTRAP=$GOROOT; fgo build VERSION_NUMBER
-```
-
-Running `fgo build` will build your application and save the binary to the `pkg` directory. Then, this command uploads the built binary files to GitHub. Finally, after uploading to GitHub, it updates a Homebrew formula in `homebrew` directory.
-
-When debugging, you may need to build your program but not upload it. To do this, run `fgo build` without a version number. Formula Go will then build your program in the `pkg/snapshot` directory without uploading.
-
-We can learn more about the `fgo build` command by running `fgo build --help`:
-
-```bash
-$ fgo build --help
-NAME:
-   fgo build - build binaries, upload them, and update the brew formula.
-
-USAGE:
-   fgo build [command options] [version]
-
-DESCRIPTION:
-   build command runs build and release targets in the Makefile to build your
-software and upload the binary files to GitHub. This command takes an argument,
-version, which specifies the version to be created. If it is omitted, "snapshot"
-will be used and uploading will be skipped.
-
-To run this command, a GitHub API token is required. Users have to give a token
-via one of the -t/--token flag, GITHUB_TOKEN environment variable, and github.token
-variable in your .gitconfig.
-
-If -b/--body flag isn't given but your CHANGELOG.md contains a release note
-associated with that version, the release note will be copied to the release
-page in GitHub.
-
-This command also updates the homebrew formula. After finishing this command,
-you need to push the updated formula.
-
-OPTIONS:
-   -t TOKEN, --token TOKEN    GitHub API TOKEN for uploading binaries [$GITHUB_TOKEN]
-   -b TEXT, --body TEXT       TEXT describing the contents of this release
-   -p value, --process value  the number of goroutines (default: 12)
-   --delete                   delete release and its git tag in advance if exists
-   --draft                    create a draft (unpublished) release
-   --pre                      mark this release is a prerelease
-```
-
-
 ## [**20m**] 💻 Activity: Deploy a Thing!
 
-1. Choose the deployment method best suited for your MakeUtility project based on what you learned about Heroku and Homebrew during today's class.
+1. Choose the deployment method best suited for your MakeUtility project based on what you learned about Heroku during today's class.
 2. Spend the remainder the class deploying your MakeUtility project, a Slackbot, an Echo API, or a CLI application!
 3. Be sure to choose a project that is fully complete. Alternatively, clone a Golang project repository, like my [Gopherology](https://github.com/droxey/gopherology) project, a classmates' Slackbot or CLI application, or any sample application that is similar to your MakeUtility.
 
@@ -334,7 +214,7 @@ OPTIONS:
 
 - Add a checkmark next to the documentation requirement in your repo's `rubric.md`.
 - Commit the documentation you generated before leaving today and the update to your progress.
-- Review the [syllabus](https://make.sc/bew2.5) and ensure you are on track to meet all requirements and expectations by the end of the course.
+- Review the [syllabus](../README.md) and ensure you are on track to meet all requirements and expectations by the end of the course.
     - _Are you on track to complete 10+ commits in your MakeUtility project?_
     - _Miss a day from class? Review the lesson plan! Did you turn in all participation-based challenges listed in the syllabus?_
 
@@ -347,9 +227,5 @@ OPTIONS:
 
 ### Documentation
 
-- [**Documentation**: Command godoc](https://godoc.org/golang.org/x/tools/cmd/godoc)
+- [**Documentation**: Command pkgsite](https://pkg.go.dev/golang.org/x/pkgsite/cmd/pkgsite)
 - [**Godoc**: Documenting Go Code (Blog Post)](https://blog.golang.org/godoc-documenting-go-code)
-
-### Deployment
-
-- [Formula Go](https://jkawamoto.github.io/fgo/)
