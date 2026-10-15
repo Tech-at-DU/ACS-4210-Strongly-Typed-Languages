@@ -14,7 +14,6 @@ const HOSTNAME_WHITELIST = [
   'unpkg.com',
   'github.com',
   'github.io',
-  'makeschool.com',
   'gopherguides.com'
 ]
 
