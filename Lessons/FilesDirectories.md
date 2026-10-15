@@ -30,19 +30,19 @@ Call on individuals to live code their solutions to the first three requirements
 
 ### Introduction
 
-The `ioutil` package we introduced last class period has even more to offer!
+The `os` package we used last class period to read and write files can also list directories.
 
-It provides a function named `ReadDir`, an approachable way to list all the files in the directory. Check out the method signature below:
+Its `ReadDir` function is an approachable way to list all the files in a directory. Check out the method signature below:
 
 ```golang
-func ReadDir(dirname string) ([]os.FileInfo, error)
+func ReadDir(name string) ([]DirEntry, error)
 ```
 
-`ReadDir` reads the directory named by `dirname`, and returns a list of directory entries sorted by filename.
+`ReadDir` reads the directory named by `name`, and returns a list of directory entries sorted by filename.
 
 ### Code Snippet: Traversing a Directory Tree
 
-In your `$GOROOT`, create a directory named `traversing`, with a file inside named `main.go`.
+Create a new directory named `traversing`, with a file inside named `main.go`.
 
 Paste the code below, then build and run it. Examine the output and syntax.
 
@@ -51,13 +51,13 @@ package main
 
 import (
     "fmt"
-    "io/ioutil"
     "log"
+    "os"
 )
 
 func main() {
     directory := "."
-    files, err := ioutil.ReadDir(directory)
+    files, err := os.ReadDir(directory)
     if err != nil {
         log.Fatal(err)
     }
@@ -72,9 +72,9 @@ func main() {
 
 To safely ignore returned values from a function, use the `_` in place of any variable name.
 
-### FileInfo Struct
+### DirEntry Interface
 
-You might have noticed that the method signature for `ReadDir` returns a slice of [`FileInfo`](https://golang.org/pkg/os/#FileInfo) structs.
+You might have noticed that the method signature for `ReadDir` returns a slice of [`DirEntry`](https://pkg.go.dev/os#DirEntry) values.
 
 Change the value of the `directory` variable, and set it to point to your home directory. For example, `/Users/YOUR_MAC_USERNAME`.
 
