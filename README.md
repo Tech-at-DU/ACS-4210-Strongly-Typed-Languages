@@ -27,7 +27,7 @@ _In this course, students discover the value of strongly typed languages in serv
 
 ## Prerequisites
 
-- [ACS 1220](https://make.sc/acs1220)
+- [ACS 1220](https://github.com/Tech-at-DU/ACS-1220-Authentication-and-Associations)
 
 ## Course Specifics
 
