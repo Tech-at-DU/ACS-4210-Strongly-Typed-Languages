@@ -165,28 +165,12 @@ To examine the output, paste the above snippet, build, and run your executable.
 
 ## [**30m**] Video: Headless Web Scraping
 
-<iframe id="ytplayer" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/_7pWCg94sKw?modestbranding=1&playsinline=1" frameborder="0" allow="picture-in-picture" allowfullscreen>
+<iframe id="ytplayer" type="text/html" width="720" height="405" src="https://www.youtube.com/embed/_7pWCg94sKw?modestbranding=1&playsinline=1" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
 
 ## [**20m**] Example Code / Demo
 
 - [chromedp/examples](https://github.com/chromedp/examples): awesome `chromedp` examples, use these to get started
 - [droxey/makeshort](https://github.com/droxey/makeshort): example app for creating `make.sc` shortlinks from the command line
-
-<!--
-# [**30m**] 💻 Activity: Work Out a Workflow
-
-_Complete the [workflow worksheet]() distributed in class._
-
-When you're done, use the remaining lab time to begin your project!
-
-## [**55m**] 🧪 Lab Time: Begin Web Scraper Project
-
-Read the project [README](https://github.com/Tech-at-DU/makescraper) to begin your project.
-
-You'll be able to complete at least a few requirements after what you've learned today.
-
-We'll learn how to serialize and store JSON during our next class!
--->
 
 ## 📚 Resources & Credits
 
