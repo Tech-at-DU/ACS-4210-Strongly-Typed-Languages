@@ -533,7 +533,6 @@ After session: finish any unfinished `logpipe` core. Skim Effective Go + Code Re
 5. **[builtin — any](https://pkg.go.dev/builtin#any)** — `any` as alias for `interface{}` (Go 1.18+).
 6. **[When To Use Generics](https://go.dev/blog/when-generics)** — optional; behavioral interfaces vs type parameters.
 7. **[Types.md](Types.md)** — survey mention of interfaces; full depth is this lesson.
-8. **[07-Fullstack.md](07-Fullstack.md)** — geometry `Shape` as prior-knowledge reframe only.
 
 <details>
 <summary>For Curriculum Authors</summary>

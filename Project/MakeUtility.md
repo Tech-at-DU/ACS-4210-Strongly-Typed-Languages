@@ -6,7 +6,6 @@
 2. [Scenario](#scenario)
 3. [Project Guidelines](#project-guidelines)
 4. [Rubric](#rubric)
-5. [Code Review and Feedback](#code-review-and-feedback)
 
 ## Scenario
 
