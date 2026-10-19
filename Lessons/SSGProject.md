@@ -277,10 +277,9 @@ _This is a great time to ask questions or get unblocked so you can make progress
 
 ## 📚 Resources & Credits
 
-- [**Static Site Generators: Modern Tools for Static Website Development**](https://www.oreilly.com/web-platform/free/files/static-site-generators.pdf) - A free eBook all about modern-day static website development, and the backend tools required.
 - [**David Walsh: An Introduction to Static Site Generators**](https://davidwalsh.name/introduction-static-site-generators) - A detailed look at the features, advantages, and disadvantages of static site generators.
 - [**Go By Example**: Reading Files](https://gobyexample.com/reading-files)
 - [**Go By Example**: Writing Files](https://gobyexample.com/writing-files)
 - [**Go By Example**: Panic](https://gobyexample.com/panic)
 - [**GopherAcademy**: Using Go Templates](https://blog.gopheracademy.com/advent-2017/using-go-templates/)
-- [**rapid7.com**: Building a Simple CLI Tool with Golang](https://blog.rapid7.com/2016/08/04/build-a-simple-cli-tool-with-golang/)
+- [**rapid7.com**: Building a Simple CLI Tool with Golang](https://www.rapid7.com/blog/post/2016/08/04/build-a-simple-cli-tool-with-golang/)
