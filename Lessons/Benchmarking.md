@@ -10,8 +10,6 @@
 | 1:35        | 0:20      | Lab Time                  |
 | 1:55        | 0:05      | Wrap Up                   |
 
-<img src="https://www.gopherguides.com/assets/images/logos/logo.svg" height="300" style="position: absolute; right: 0; top: 55px;">
-
 ## Why You Should Know This (2 min)
 
 Performance is an important factor in your applications! Today's lesson focuses on tools and techniques that help you **find broken, slow, or inefficient code faster than ever**. Benchmarking and testing are techniques that yield the kind of code that impresses peers and colleagues alike!

@@ -128,9 +128,9 @@ If you require accommodations or have extenuating circumstances such as prolonge
 ## Additional Practice & External Resources
 
 - [Gophercises](https://gophercises.com/): Real-world side projects with video tutorials!
-- [TutorialEdge - Golang Repository](https://github.com/elliotforbes/tutorialedge-v2/tree/master/content/golang): Mini-tutorials to introduce and enhance your Golang knowledge.
+- [TutorialEdge - Golang](https://tutorialedge.net/golang/): Mini-tutorials to introduce and enhance your Golang knowledge.
 - [YouTube - Todd Mcleod](https://www.youtube.com/user/toddmcleod/playlists): Videos to reinforce Golang concepts and techniques that we cover in class.
-- [Echo Framework](https://echo.labstack.com/guide): Documentation for Echo, a high performance, extensible, minimalist Go web framework.
+- [Echo Framework](https://echo.labstack.com/docs): Documentation for Echo, a high performance, extensible, minimalist Go web framework.
 - [GORM](http://doc.gorm.io/#): The fantastic ORM library for Golang.
 - <https://threedots.tech/go-in-one-evening/>
-- <https://github.com/cblte/100-golang-exercises/blob/main/exercises_beginner.adoc>
+- <https://github.com/cblte/100-golang-exercises/blob/main/exercises_beginner.md>
